@@ -36,10 +36,14 @@
 
 body {
   margin: 0;
-  background-color: var(--black-persona-5);
+  /* background-color: var(--black-persona-5); */
   color: var(--white-persona-5);
   min-height: 100vh;
   overflow-x: hidden;
+
+  background-image: linear-gradient(rgba(13,13,13,0.45), rgba(13,13,13,0.45)), url('/images/bg-black.jpg');
+  background-position: center center;
+  background-attachment: scroll; /* avoid fixed on mobile; see notes */
 }
 
 #root {

@@ -28,7 +28,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 8px;
-  background-color: #2d3748;
+  background-color: rgba(72, 70, 70, 0.9);
   transition: background-color 0.3s ease;
 }
 
@@ -96,7 +96,7 @@
 
 /* Focus styles for accessibility */
 .language-switch:focus {
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+  box-shadow: 0 0 0 3px rgba(72, 70, 70, 0.5);
 }
 
 /* Responsive adjustments */

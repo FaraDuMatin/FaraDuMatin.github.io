@@ -25,7 +25,7 @@
 .title-underline {
   width: 100%;
   height: 4px;
-  background-color: var(--red-persona-5);
+  /* background-color: var(--red-persona-5); */
   margin-top: 10px;
 }
 
@@ -38,9 +38,7 @@
   margin: 0 auto;
 }
 
-.text-item {
-  background: transparent;
-}
+
 
 .item-content {
   display: flex;

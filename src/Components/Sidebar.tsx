@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Sidebar.css';
 import { useLanguage } from '../contexts/LanguageContext';
+import LanguageSwitch from './LanguageSwitch';
 
 const Sidebar: React.FC = () => {
   const { t } = useLanguage();
@@ -10,11 +11,12 @@ const Sidebar: React.FC = () => {
   const links = [
     { id: 'home', label: t('nav.home') },
     { id: 'project1', label: t('projects.project1.title') },
-    { id: 'project2', label: t('projects.project2.title') },
-    { id: 'project3', label: t('projects.project3.title') },
     { id: 'experience', label: t('experience.title') },
     { id: 'education', label: t('education.title') },
   ];
+
+  // { id: 'project2', label: t('projects.project2.title') },
+  //   { id: 'project3', label: t('projects.project3.title') },
 
   const manualScrollRef = useRef(false);
   const manualTimerRef = useRef<number | null>(null);
@@ -71,6 +73,9 @@ const Sidebar: React.FC = () => {
 
   return (
     <nav className={`sidebar ${open ? 'open' : ''}`} aria-label={t('nav.navigation') || 'Navigation'}>
+      {/* <div className="sidebar-language-switch">
+        <LanguageSwitch />
+      </div> */}
       <button
         className="sidebar-toggle"
         aria-expanded={open}

@@ -15,7 +15,7 @@ const Hero = () => {
         </p>
       </div>
       
-      <div className="hero-cta">
+      {/* <div className="hero-cta">
         <button className="cta-button" onClick={() => {
           const portfolioSection = document.getElementById('portfolio');
           portfolioSection?.scrollIntoView({ behavior: 'smooth' });
@@ -23,7 +23,7 @@ const Hero = () => {
          {t('hero.cta')}
           <img src="/icons/Arrow.svg" alt="arrow down" className="arrow-icon" />
         </button>
-      </div>
+      </div> */}
     </section>
   );
 };

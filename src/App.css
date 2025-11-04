@@ -2,7 +2,19 @@
 .portfolio-container {
   width: 100%;
   min-height: 100vh;
-  background-color: var(--red-persona-5);
+  /* background-color: var(--red-persona-5); */
   color: var(--white-persona-5);
   position: relative;
+}
+
+.main-content {
+  margin-left: 130px; /* Sidebar width (180px) + left offset (24px) + gap (46px) */
+  transition: margin-left 0.3s ease;
+}
+
+/* Remove margin on mobile when sidebar becomes a toggle menu */
+@media (max-width: 900px) {
+  .main-content {
+    margin-left: 0;
+  }
 }

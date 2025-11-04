@@ -4,7 +4,13 @@ import Hero from "./Components/Hero.tsx";
 import Sidebar from "./Components/Sidebar";
 import ProjectDetails from "./Components/ProjectDetails.tsx";
 import Text from "./Components/Text.tsx";
+import GoBackUp from "./Components/GoBackUp.tsx";
+
 import { LanguageProvider } from "./contexts/LanguageContext.tsx";
+
+
+
+
 
 
 function App() {
@@ -12,6 +18,7 @@ function App() {
     <LanguageProvider>
       <div className="portfolio-container">
         <Sidebar />
+        <GoBackUp />
         <div className="main-content">
       <Navbar />
       <Hero />
@@ -20,11 +27,11 @@ function App() {
         projectKey="project1"
         image="/images/Project1.png"
         imageAlt="Project Image"
-        technologies={[{ name: "React" }, { name: "TypeScript" }]}
-        demoLink="https://example.com/demo"
-        sourceLink="https://github.com/example/repo"
+        technologies={[{ name: "Next.js" }, {name: "Real Time"}, { name: "Authentication"}]}
+        demoLink="https://colla-board-fwhs.vercel.app/"
+        sourceLink="https://github.com/FaraDuMatin/CollaBoard"
       />
-      <ProjectDetails
+      {/* <ProjectDetails
         id="project2"
         reversed={true}
         projectKey="project2"
@@ -33,7 +40,7 @@ function App() {
         technologies={[{ name: "JavaScript" }, { name: "CSS" }]}
         demoLink="https://example.com/demo2"
         sourceLink="https://github.com/example/repo2"
-      />
+      /> */}
       {/* <ProjectDetails
         id="project3"
         projectKey="project3"

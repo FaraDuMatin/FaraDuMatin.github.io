@@ -68,7 +68,7 @@
   gap: 10px;
   flex-shrink: 0;
   border-radius: 31.5px;
-  background: linear-gradient(0deg, var(--red-persona-5) 0%, var(--redFonce-persona-5) 100%);
+  /* background: linear-gradient(0deg, var(--red-persona-5) 0%, var(--redFonce-persona-5) 100%); */
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -82,17 +82,19 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  background: linear-gradient(0deg, #ffffff 0%, #6462624d 50%, #000004 100%);
 }
 
 .cta-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(22, 31, 155, 0.4);
-  background: linear-gradient(0deg, #1a23a5 0%, #0a0d3f 100%);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.9);
+  /* black to white gradient */
+  background: linear-gradient(0deg, #ffffff 0%, #6462624d 50%, #000004 100%);
 }
 
 .cta-button:active {
   transform: translateY(0);
-  box-shadow: 0 4px 15px rgba(22, 31, 155, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .arrow-icon {

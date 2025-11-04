@@ -18,7 +18,7 @@ const Navbar = () => {
           {/* Social media icons */}
           <div className="navbar-social">
             <a 
-              href="https://linkedin.com/in/your-profile" 
+              href="https://www.linkedin.com/in/farah-mohamed-1411a0264/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="social-link"
@@ -27,14 +27,14 @@ const Navbar = () => {
             </a>
             
             <a 
-              href="mailto:your.email@gmail.com" 
+              href="mailto:mohameffarah1@gmail.com" 
               className="social-link"
             >
               <img src="/icons/Gmail_24.svg" alt="Gmail" className="social-icon" />
             </a>
             
             <a 
-              href="https://github.com/your-username" 
+              href="https://github.com/FaraDuMatin" 
               target="_blank" 
               rel="noopener noreferrer"
               className="social-link"
