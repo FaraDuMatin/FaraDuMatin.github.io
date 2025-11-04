@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Sidebar.css';
 import { useLanguage } from '../contexts/LanguageContext';
-import LanguageSwitch from './LanguageSwitch';
+// import LanguageSwitch from './LanguageSwitch';
 
 const Sidebar: React.FC = () => {
   const { t } = useLanguage();
