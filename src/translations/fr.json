@@ -1,0 +1,53 @@
+{
+  "hero": {
+    "title": "Farah Mohamed", 
+    "subtitle": "Salut! Je suis une ingénieure logiciel prêt à créer des applications rapides et robustes qui fonctionnent sur tous les appareils",
+    "cta": "Voir mon travail"
+  },
+  "nav": {
+    "home": "Accueil",
+    "navigation": "Navigation"
+  },
+  "projects": {
+    "buttons": {
+      "liveDemo": "Démo en direct",
+      "sourceCode": "Code source"
+    },
+    "project1": {
+      "title": "CollaBoard",
+      "description": "Tableau blanc collaboratif avec des fonctionnalités en temps réel"
+    },
+    "project2": {
+      "title": "Titre du Projet 2",
+      "description": "Description du Projet 2"
+    },
+    "project3": {
+      "title": "Titre du Projet 3",
+      "description": "Description du Projet 3"
+    }
+  },
+  "experience": {
+    "title": "Expérience",
+    "items": [
+      {
+        "title": "Analyste de sécurité",
+        "subtitle": "Gouvernement du Canada",
+        "period": "2024 - 2025"
+      },
+      {
+        "title": "Tuteur de mathématiques",
+        "subtitle": "MonsieurMath",
+        "period": "2023 - 2025"
+      }
+    ]
+  },
+  "education": {
+    "title": "Éducation",
+    "items": [
+      {
+        "title": "BSc Informatique",
+        "period": "2022 - 2025"
+      }
+    ]
+  }
+}

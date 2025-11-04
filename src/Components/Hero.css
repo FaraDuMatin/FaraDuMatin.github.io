@@ -1,0 +1,180 @@
+/* Hero Section Styles */
+.hero-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+  gap: 20px;
+  
+}
+
+.hero-name {
+  display: flex;
+  width: 834px;
+  height: 89px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.name-text {
+  color: var(--white-persona-5);
+  text-align: center;
+  font-family: "Kalam", cursive;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+}
+
+.hero-subtitle {
+  display: flex;
+  width: 834px;
+  height: 373px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.subtitle-text {
+  color: var(--white-persona-5);
+  text-align: center;
+  font-family: "Kalam", cursive;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+}
+
+.hero-cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.cta-button {
+  display: flex;
+  min-width: 252px;
+  width: auto;
+  height: 51px;
+  padding: 12px 41px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 31.5px;
+  background: linear-gradient(0deg, var(--red-persona-5) 0%, var(--redFonce-persona-5) 100%);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+
+  /* Text styles */
+  color: var(--white-persona-5);
+  text-align: center;
+  font-family: "Kalam", cursive;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(22, 31, 155, 0.4);
+  background: linear-gradient(0deg, #1a23a5 0%, #0a0d3f 100%);
+}
+
+.cta-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(22, 31, 155, 0.3);
+}
+
+.arrow-icon {
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+  filter: brightness(0) invert(1); /* Makes the icon white */
+  animation: bounceUpDown 1s infinite;
+}
+
+@keyframes bounceUpDown {
+  0% {
+    transform: translateY(0);
+    /* animation-timing-function: ease-in; */
+  }
+  30% {
+    transform: translateY(4px);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: translateY(0);
+    /* animation-timing-function: ease-out; */
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 834px) {
+  .hero-name,
+  .hero-subtitle {
+    width: 90%;
+    padding: 0 20px;
+  }
+
+  .name-text,
+  .subtitle-text {
+    font-size: 40px;
+  }
+
+  .cta-button {
+    min-width: 220px;
+    width: auto;
+    height: 46px;
+    font-size: 22px;
+    padding: 10px 35px;
+  }
+}
+
+@media (max-width: 600px) {
+  .name-text,
+  .subtitle-text {
+    font-size: 32px;
+  }
+
+  .hero-subtitle {
+    height: auto;
+    min-height: 280px;
+  }
+
+  .cta-button {
+    min-width: 200px;
+    width: auto;
+    height: 44px;
+    font-size: 20px;
+    padding: 10px 30px;
+  }
+}
+
+@media (max-width: 400px) {
+  .name-text,
+  .subtitle-text {
+    font-size: 28px;
+  }
+
+  .hero-subtitle {
+    min-height: 240px;
+  }
+
+  .cta-button {
+    min-width: 180px;
+    width: auto;
+    height: 42px;
+    font-size: 18px;
+    padding: 8px 25px;
+  }
+}

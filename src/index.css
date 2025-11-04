@@ -1,0 +1,81 @@
+/* Portfolio Global Styles */
+:root {
+  /* Portfolio Color Palette */
+  --primary-bg: #120D51;
+  --white: #ffffff;
+  --black: #000000;
+  --gradient-linear-start: #070a35;
+  --gradient-linear-end: #161f98;
+  --gradient-radial-start: #161f98;
+  --gradient-radial-end: #070a35;
+
+  /* new color palette */
+  --black-persona-5:#0d0d0d;
+  --red-persona-5:#d92323;
+  --redFonce-persona-5:#732424;
+  --gray-persona-5:#7b7b7b;
+  --white-persona-5:#ffffff;
+
+  /* Typography */
+  font-family: 'Kalam', cursive, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--black-persona-5);
+  color: var(--white-persona-5);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Basic element styles */
+a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--gradient-linear-end);
+  color: var(--white);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  background-color: var(--gradient-linear-start);
+  transform: translateY(-2px);
+}

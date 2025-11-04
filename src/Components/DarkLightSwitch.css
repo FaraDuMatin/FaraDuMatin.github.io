@@ -1,0 +1,143 @@
+/* Dark/Light Switch Styles */
+.theme-switch-container {
+  display: inline-block;
+}
+
+.theme-switch {
+  position: relative;
+  width: 100px;
+  height: 50px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  overflow: hidden;
+}
+
+/* Track background */
+.switch-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark theme track */
+.theme-switch.dark .switch-track {
+background-color: rgba(45, 55, 72, 0.7);
+}
+
+/* Light theme track */
+.theme-switch.light .switch-track {
+background-color: rgba(45, 55, 72, 0.7);
+}
+
+/* Track icons */
+.track-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.track-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Moving toggle circle */
+.switch-toggle {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark theme - toggle on the right */
+.theme-switch.dark .switch-toggle {
+  transform: translateX(48px);
+}
+
+/* Light theme - toggle on the left */
+.theme-switch.light .switch-toggle {
+  transform: translateX(0px);
+}
+
+/* Toggle icon */
+.toggle-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Hover effects */
+.theme-switch:hover {
+  transform: scale(1.02);
+}
+
+.theme-switch:active {
+  transform: scale(0.98);
+}
+
+/* Focus styles for accessibility */
+.theme-switch:focus {
+  box-shadow: 0 0 0 3px rgba(248, 252, 255, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .theme-switch {
+    width: 80px;
+    height: 40px;
+    border-radius: 20px;
+  }
+  
+  .switch-toggle {
+    width: 32px;
+    height: 32px;
+    top: 3px;
+    left: 3px;
+  }
+  
+  .theme-switch.dark .switch-toggle {
+    transform: translateX(38px);
+  }
+  
+  .toggle-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .track-icon {
+    width: 16px;
+    height: 16px;
+  }
+}

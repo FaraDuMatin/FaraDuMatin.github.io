@@ -1,0 +1,8 @@
+/* Portfolio Layout Styles */
+.portfolio-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--red-persona-5);
+  color: var(--white-persona-5);
+  position: relative;
+}

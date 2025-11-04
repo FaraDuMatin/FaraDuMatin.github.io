@@ -1,0 +1,54 @@
+{
+  "hero": {
+    "title": "Farah Mohamed",
+    "subtitle": "Hi! I'm a software engineer ready to build fast and robust applications that run on any devices",
+    "cta": "See my work"
+  },
+  "nav": {
+    "home": "Home",
+    "navigation": "Navigation"
+  },
+  "projects": {
+    "buttons": {
+      "liveDemo": "Live demo",
+      "sourceCode": "Source code"
+    },
+    "project1": {
+      "title": "CollaBoard",
+      "description": "Collaborative whiteboard with real time features"
+    },
+    "project2": {
+      "title": "Project Title 2",
+      "description": "Project Description 2"
+    },
+    "project3": {
+      "title": "Project Title 3",
+      "description": "Project Description 3"
+    }
+  },
+  "experience": {
+    "title": "Experience",
+    "items": [
+      {
+        "title": "Security Analyst",
+        "subtitle": "Government of Canada",
+        "period": "2024 - 2025"
+      },
+      {
+        "title": "Math Tutor",
+        "subtitle": "MonsieurMath",
+        "period": "2023 - 2025"
+      }
+    ]
+  },
+  "education": {
+    "title": "Education",
+    "items": [
+      {
+        "title": "BSc Computer Science",
+        "period": "2022 - 2025"
+      }
+    ]
+  }
+}
+
