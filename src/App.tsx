@@ -8,11 +8,6 @@ import GoBackUp from "./Components/GoBackUp.tsx";
 
 import { LanguageProvider } from "./contexts/LanguageContext.tsx";
 
-
-
-
-
-
 function App() {
   return (
     <LanguageProvider>
@@ -20,39 +15,77 @@ function App() {
         <Sidebar />
         <GoBackUp />
         <div className="main-content">
-      <Navbar />
-      <Hero />
-      <ProjectDetails
-        id="project1"
-        projectKey="project1"
-        image="/images/Project1.png"
-        imageAlt="Project Image"
-        technologies={[{ name: "Next.js" }, {name: "Real Time"}, { name: "Authentication"}]}
-        demoLink="https://colla-board-fwhs.vercel.app/"
-        sourceLink="https://github.com/FaraDuMatin/CollaBoard"
-      />
-      {/* <ProjectDetails
-        id="project2"
-        reversed={true}
-        projectKey="project2"
-        image="/images/image 10.png"
-        imageAlt="Project Image 2"
-        technologies={[{ name: "JavaScript" }, { name: "CSS" }]}
-        demoLink="https://example.com/demo2"
-        sourceLink="https://github.com/example/repo2"
-      /> */}
-      {/* <ProjectDetails
-        id="project3"
-        projectKey="project3"
-        image="/images/image 10.png"
-        imageAlt="Project Image 3"
-        technologies={[{ name: "Node.js" }, { name: "Express" }]}
-        demoLink="https://example.com/demo3"
-        sourceLink="https://github.com/example/repo3"
-      /> */}
-      {/* Other components will go here */}
-      <Text section="experience" />
-      <Text section="education" />
+          <Navbar />
+          <Hero />
+          <div
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-easing="ease-in-out"
+          >
+            <ProjectDetails
+              id="project1"
+              projectKey="project1"
+              image="/images/collaboardGif.gif"
+              imageAlt="Project Image"
+              technologies={[
+                { name: "Next.js" },
+                { name: "Real Time" },
+                { name: "Authentication" },
+              ]}
+              demoLink="https://colla-board-fwhs.vercel.app/"
+              sourceLink="https://github.com/FaraDuMatin/CollaBoard"
+            />
+          </div>
+          <div
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-easing="ease-in-out"
+          >
+            <ProjectDetails
+              id="project2"
+              reversed={true}
+              projectKey="project2"
+              image="/images/armadillo.gif"
+              imageAlt="Project Image 2"
+              technologies={[
+                { name: "JavaScript" },
+                { name: "WebGL" },
+                { name: "Three.js" },
+              ]}
+              demoLink="https://faradumatin.github.io/DancingArmadillo/"
+              sourceLink="https://github.com/FaraDuMatin/DancingArmadillo"
+            />
+          </div>
+          <div
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-easing="ease-in-out"
+          >
+            <ProjectDetails
+              id="project3"
+              projectKey="project3"
+              image="/images/animation.gif"
+              imageAlt="Project Image 3"
+              technologies={[{ name: "Three.js" }, { name: "WebGL" }]}
+              demoLink="https://faradumatin.github.io/CharacterAnimation/"
+              sourceLink="https://github.com/FaraDuMatin/CharacterAnimation"
+            />
+          </div>
+          {/* Other components will go here */}
+          <div
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-easing="ease-in-out"
+          >
+            <Text section="experience" />
+          </div>
+          <div
+            data-aos="fade-up"
+            data-aos-duration="800"
+            data-aos-easing="ease-in-out"
+          >
+            <Text section="education" />
+          </div>
         </div>
       </div>
     </LanguageProvider>

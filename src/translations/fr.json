@@ -18,12 +18,12 @@
       "description": "Tableau blanc collaboratif avec des fonctionnalités en temps réel"
     },
     "project2": {
-      "title": "Titre du Projet 2",
-      "description": "Description du Projet 2"
+      "title": "Expérimentation 3D",
+      "description": "Application web 3D utilisant Three.js et WebGL."
     },
     "project3": {
-      "title": "Titre du Projet 3",
-      "description": "Description du Projet 3"
+      "title": "Animation de personnage",
+      "description": "Création et animation d'un personnage 3D dans Three.js et WebGL."
     }
   },
   "experience": {

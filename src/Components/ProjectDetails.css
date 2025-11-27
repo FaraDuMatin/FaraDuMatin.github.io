@@ -32,6 +32,7 @@
   width: 100%;
   height: auto;
   border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
 }
 
 /* Project Details */
@@ -41,22 +42,20 @@
   flex-direction: column;
   gap: 20px;
   text-align: center;
-  background: rgba(72, 70, 70, 0.5);
+  background: rgba(5, 246, 29, 0.15);
   justify-content: center; /* Center content vertically */
   padding: 20px; /* Add some padding */
   border-radius: 36px; /* Match image border radius */
-  border: white 1px solid;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
 }
 
 .project-title {
-  font-family: "Kalam", cursive;
   color: var(--white-persona-5);
   margin: 0;
   text-align: center;
 }
 
 .description-text {
-  font-family: "Kalam", cursive;
   color: var(--white-persona-5);
   margin: 0;
   text-align: center;
@@ -85,7 +84,6 @@
 }
 
 .tech-name {
-  font-family: "Kalam", cursive;
   color: var(--white-persona-5);
   font-size: 16px;
 }
@@ -105,7 +103,6 @@
   padding: 12px 24px;
   border: none;
   border-radius: 25px;
-  font-family: "Kalam", cursive;
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;

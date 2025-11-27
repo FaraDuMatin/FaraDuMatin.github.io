@@ -8,7 +8,7 @@
 }
 
 .main-content {
-  margin-left: 130px; /* Sidebar width (180px) + left offset (24px) + gap (46px) */
+  margin-left: clamp(180px, 10vw, 250px); /* Sidebar width (180px) + left offset (24px) + gap (46px) */
   transition: margin-left 0.3s ease;
 }
 

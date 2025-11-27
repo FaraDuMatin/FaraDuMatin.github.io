@@ -18,12 +18,12 @@
       "description": "Collaborative whiteboard with real time features"
     },
     "project2": {
-      "title": "Project Title 2",
-      "description": "Project Description 2"
+      "title": "3D experiment",
+      "description": "3D web application using Three.js and WebGL"
     },
     "project3": {
-      "title": "Project Title 3",
-      "description": "Project Description 3"
+      "title": "Character Animation",
+      "description": "Creation and animation of a 3D character in Three.js and WebGL"
     }
   },
   "experience": {

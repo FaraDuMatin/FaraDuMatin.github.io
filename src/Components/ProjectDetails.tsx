@@ -84,9 +84,10 @@ const ProjectDetails = ({
           </div>
         </div>
         
-        {/* Project Image */}
+        {/* Project Image (gif) */}
+        
         <div className="project-image">
-          <img src={image} alt={imageAlt} className="project-img" />
+          <img src={image} alt={imageAlt} className="project-img"/>
         </div>
       </div>
     </section>

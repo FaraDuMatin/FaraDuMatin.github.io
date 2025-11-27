@@ -17,7 +17,7 @@
   --white-persona-5:#ffffff;
 
   /* Typography */
-  font-family: 'Kalam', cursive, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Trade Winds', cursive, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   
@@ -41,9 +41,11 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 
-  background-image: linear-gradient(rgba(13,13,13,0.45), rgba(13,13,13,0.45)), url('/images/bg-black.jpg');
+  background-image: url('/images/bg-img.jpg');
+  background-size: cover;
   background-position: center center;
-  background-attachment: scroll; /* avoid fixed on mobile; see notes */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 #root {

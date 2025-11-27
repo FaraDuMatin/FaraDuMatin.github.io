@@ -34,7 +34,6 @@
 
 /* Language labels on track */
 .language-label {
-  font-family: 'Kalam', cursive;
   font-size: 12px;
   font-weight: 600;
   color: #a0aec0;
@@ -79,7 +78,6 @@
 
 /* Toggle text */
 .toggle-text {
-  font-family: 'Kalam', cursive;
   font-size: 12px;
   font-weight: 600;
   color: #2d3748;
