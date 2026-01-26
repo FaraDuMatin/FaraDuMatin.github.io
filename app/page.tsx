@@ -1,4 +1,3 @@
-import Footer from '@/components/footer';
 import Header from '@/components/header';
 import Section from '@/components/section';
 import ReturnButton from '@/components/returnButton';
@@ -13,8 +12,6 @@ export default function Home() {
       {projects.map((project) => (
         <Section key={project.root} {...project} />
       ))}
-
-      <Footer />
       <Navigation projects={projects} />
       <ReturnButton />
     </main>

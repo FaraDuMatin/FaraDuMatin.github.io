@@ -1,16 +1,28 @@
 export default function Header() {
     return (
-        <header className="w-full bg-zinc-950 max-w-6xl p-6 sm:p-12 py-12 sm:py-20 border-x border-b border-zinc-800 flex flex-col">
-            <p className="text-zinc-400 text-lg sm:text-xl mb-4 uppercase">Portfolio Website</p>
+        <header style={{ boxShadow: `0 0 4px gray, 0px 0px 4px gray inset`}} className="w-full bg-zinc-950 max-w-6xl p-6 sm:p-12 py-12 sm:py-20 border-x border-b border-zinc-800 flex flex-col">
             <h1 className="border-l-4 border-zinc-500 -ml-6 sm:-ml-12 pl-4 sm:pl-10 text-3xl sm:text-5xl font-semibold text-zinc-400">
-                <span className="font-bold text-white">Alex Thummalapalli. </span>
-                <span className="block sm:inline">CS Student.</span>
+                <span className="font-bold text-white">Farah Mohamed </span>
+                <span className="block sm:inline">Software Engineer</span>
             </h1>
-            <p className="text-zinc-400 text-lg sm:text-xl mt-8"><span className="text-zinc-300 font-bold">Hi, I'm Alex!</span> I'm majoring in computer science at the Georgia Institute of Technology. I specialize in frontend development with React/Typescript. I also have experience with full stack development and UI/UX design.</p>
-            <div className="text-zinc-400 text-xl sm:text-2xl flex flex-col gap-4 mt-8">
-                <p><span className="font-bold text-white">Resume:</span> <a className="hover:underline" href="/Alex_Thummalapalli_Resume.pdf" target="_blank" rel="noopener noreferrer">/resume.pdf</a></p>
-                <p><span className="font-bold text-white">Github:</span> <a className="hover:underline" href="https://github.com/alext101" target="_blank" rel="noopener noreferrer">/alext101</a></p>
-                <p><span className="font-bold text-white">LinkedIn:</span> <a className="hover:underline" href="https://www.linkedin.com/in/alext101/" target="_blank" rel="noopener noreferrer">/alext101</a></p>
+            <div className="text-zinc-400 text-xl sm:text-2xl flex flex-row gap-4 mt-8">
+                <a href="mailto:mohameffarah1@gmail.com">
+                    <img src="/icons/Gmail_24.svg" alt="Email Icon" className="inline w-6 h-6 mr-2 mb-1 "  />
+                </a>
+                <a href="https://www.linkedin.com/in/farah-mohamed-1411a0264/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"> 
+                    <img src="/icons/LinkedIn_24.svg" alt="LinkedIn Icon" className="inline w-6 h-6 mr-2 mb-1" />
+                </a>
+                <a href="https://github.com/FaraDuMatin/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <img src="/icons/mark-github-24.svg" alt="GitHub Icon" className="inline w-6 h-6 mr-2 mb-1" />
+                </a>
+                <a 
+                    href="/CV_Farah_English.pdf" 
+                    download 
+                    className="px-4 py-2 bg-transparent hover:bg-zinc-700 text-zinc-200 rounded-md text-sm font-medium transition-colors border border-zinc-700"
+                    aria-label="Download CV"
+                >
+                    Download CV
+                </a>    
             </div>
         </header>
     )

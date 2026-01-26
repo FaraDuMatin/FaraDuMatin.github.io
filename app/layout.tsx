@@ -4,9 +4,32 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://alext.app/'),
-  title: "AlexT Portfolio",
-  description: "CS student at Georgia Tech specializing in frontend development.",
+  metadataBase: new URL('https://faradumatin.github.io/'),
+  title: "Farah Mohamed - Software Engineer Portfolio",
+  description: "My software Engineer Portfolio. View my projects including CollaBoard, uOttaMail, UnderPath and BorderMate.",
+  keywords: ["Farah Mohamed", "Software Engineer", "Portfolio", "React", "Next.js", "TypeScript"],
+  authors: [{ name: "Farah Mohamed" }],
+  creator: "Farah Mohamed",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://faradumatin.github.io/",
+    title: "Farah Mohamed - Software Engineer Portfolio",
+    description: "My software Engineer Portfolio. View my projects including CollaBoard, uOttaMail, UnderPath and BorderMate.",
+    siteName: "Farah Mohamed Portfolio",
+    
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -19,7 +42,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://rsms.me/" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-        <link rel="shortcut icon" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.png" />
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
