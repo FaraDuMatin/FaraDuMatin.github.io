@@ -4,7 +4,7 @@ import { useLanguage } from '@/lib/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Header() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   
   return (
     <header
@@ -51,7 +51,7 @@ export default function Header() {
           />
         </a>
         <a
-          href="/CV_Farah_English.pdf"
+          href={language === 'en' ? '/Resume_Farah.pdf' : '/CV_Farah.pdf'}
           target="_blank"
           rel="noopener noreferrer"
           className="px-4 py-2 bg-transparent hover:bg-zinc-700 text-zinc-200 rounded-md text-sm font-medium transition-colors border border-zinc-700"
