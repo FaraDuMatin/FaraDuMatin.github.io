@@ -1,0 +1,70 @@
+export const en = {
+  header: {
+    name: "Farah Mohamed",
+    title: "Software Engineer",
+    resume: "Resume",
+  },
+  projects: [
+    {
+      title: "CollaBoard",
+      description: "Collaborative whiteboard with real time features.",
+      feature: "Real-time, Creative tools, Multi-user support, Authentication, Authorization",
+      stack: "Next.js, React, TypeScript, HTML, Tailwind CSS, Convex, Clerk",
+      github: "CollaBoard",
+      site: "collaboard.app",
+      fullDescription: "CollaBoard enables multiple users to collaborate on a shared digital whiteboard in real-time. Users can draw, add text, and interact with the board simultaneously while seeing changes from other participants instantly.",
+    },
+    {
+      title: "uOttaMail",
+      description: "AI-Powered Inbox Firewall",
+      feature: "Spam Detection, Priority Classification, Tone Analysis, Action Item Extraction, Malicious URL Scanning",
+      stack: "React, Django, PostgreSQL, Redis, Solace Agent Mesh, Docker, LLMs API (Claude 4, Gemini Pro, GPT-5)",
+      github: "uOttaMail",
+      fullDescription: "An intelligent email security system that uses multiple AI agents to analyze incoming emails in real-time for spam detection, priority classification, tone analysis, action item extraction, and malicious URL scanning.",
+    },
+    {
+      title: "Fincheck",
+      description: "Finance Tracker and Dashboard",
+      feature: "Transaction Analysis, Automatic Categorization, CSV Upload, Manual Edits, Summary Statistics",
+      stack: "Next.js, React, TypeScript, HTML, Tailwind CSS, Python, FastAPI, Gemini API",
+      github: "Fincheck",
+      site: "Fincheck.app",
+      fullDescription: "A lightweight service that analyzes uploaded transactions and automatically assigns categories to simplify expense tracking. Exposes a clean API for the React.js frontend and supports manual edits, CSV uploads, and summary statistics.",
+    },
+    {
+      title: "BorderMate",
+      description: "Browser-based speech-to-speech translator for real-time conversations.",
+      feature: "Speech-to-Text, Translation (multi-fallback), Text-to-Speech, Real-time interaction, Language detection",
+      stack: "Next.js, React, TypeScript, HTML, Tailwind CSS, APIs",
+      github: "BorderMate",
+      site: "BorderMate.io",
+      fullDescription: "BorderMate captures spoken input in the browser, transcribes it with the Web Speech API, translates text via LibreTranslate with fallbacks to Lingva and MyMemory, and plays natural-sounding audio using the Web Speech Synthesis API",
+    },
+    {
+      title: "RayTracer",
+      description: "Offline renderer capable of generating realistic 3D images.",
+      feature: "Ray tracing, 3D rendering, Graphics programming",
+      stack: "C++",
+      github: "RayTracingImplementation",
+      fullDescription: "RayTracingImplementation is a C++ project that implements a basic ray tracing algorithm to render 3D scenes with realistic lighting and shadows. It demonstrates fundamental concepts of computer graphics and rendering techniques.",
+    },
+    {
+      title: "DancingArmadillo",
+      description: "Experimentation of glsl shaders",
+      feature: "3D Shaders, WebGL, GLSL, Animation, Interactive",
+      stack: "JavaScript, HTML, GLSL, Three.js",
+      github: "DancingArmadillo",
+      site: "DancingArmadillo.io",
+      fullDescription: "DancingArmadillo showcases experimentation with GLSL shaders, creating dynamic and interactive 3D animations using WebGL and Three.js. Press 'p' to start the music. Use 'q', 'w' and 'e' to control effects like a true DJ.",
+    },
+    {
+      title: "CharacterAnimation",
+      description: "From building bones to full animation in ThreeJs",
+      feature: "Real-time 3D rendering of a human model,Toggle bones and mesh visibility,Trigger running animation",
+      stack: "JavaScript, Three.js, GLSL",
+      github: "CharacterAnimation",
+      site: "CharacterAnimation.io",
+      fullDescription: "This project is an interactive 3D human model viewer and animator built in a class on computer graphics (IFT3355). It allows users to manipulate a human figure, trigger animations, and toggle the visibility of bones and meshes using keyboard controls. The application is implemented in JavaScript and WebGL, with shaders and assets organized in the workspace.",
+    }
+  ]
+};

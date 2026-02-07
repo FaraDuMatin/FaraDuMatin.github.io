@@ -1,0 +1,70 @@
+export const fr = {
+  header: {
+    name: "Farah Mohamed",
+    title: "Ingénieure Logicielle",
+    resume: "CV",
+  },
+  projects: [
+    {
+      title: "CollaBoard",
+      description: "Tableau blanc collaboratif avec fonctionnalités en temps réel.",
+      feature: "Temps réel, Outils créatifs, Support multi-utilisateurs, Authentification, Autorisation",
+      stack: "Next.js, React, TypeScript, HTML, Tailwind CSS, Convex, Clerk",
+      github: "CollaBoard",
+      site: "collaboard.app",
+      fullDescription: "CollaBoard permet à plusieurs utilisateurs de collaborer sur un tableau blanc numérique partagé en temps réel. Les utilisateurs peuvent dessiner, ajouter du texte et interagir avec le tableau simultanément tout en voyant instantanément les changements des autres participants.",
+    },
+    {
+      title: "uOttaMail",
+      description: "Pare-feu de boîte de réception alimenté par l'IA",
+      feature: "Détection de spam, Classification des priorités, Analyse du ton, Extraction d'éléments d'action, Analyse d'URL malveillantes",
+      stack: "React, Django, PostgreSQL, Redis, Solace Agent Mesh, Docker, LLMs API (Claude 4, Gemini Pro, GPT-5)",
+      github: "uOttaMail",
+      fullDescription: "Un système de sécurité des e-mails intelligent qui utilise plusieurs agents IA pour analyser les e-mails entrants en temps réel pour la détection de spam, la classification des priorités, l'analyse du ton, l'extraction d'éléments d'action et l'analyse d'URL malveillantes.",
+    },
+    {
+      title: "Fincheck",
+      description: "Suivi financier et tableau de bord",
+      feature: "Analyse de transactions, Catégorisation automatique, Téléchargement CSV, Modifications manuelles, Statistiques récapitulatives",
+      stack: "Next.js, React, TypeScript, HTML, Tailwind CSS, Python, FastAPI, Gemini API",
+      github: "Fincheck",
+      site: "Fincheck.app",
+      fullDescription: "Un service léger qui analyse les transactions téléchargées et attribue automatiquement des catégories pour simplifier le suivi des dépenses. Expose une API propre pour l'interface React.js et prend en charge les modifications manuelles, les téléchargements CSV et les statistiques récapitulatives.",
+    },
+    {
+      title: "BorderMate",
+      description: "Traducteur vocal en temps réel basé sur navigateur.",
+      feature: "Parole vers texte, Traduction (multi-secours), Texte vers parole, Interaction en temps réel, Détection de langue",
+      stack: "Next.js, React, TypeScript, HTML, Tailwind CSS, APIs",
+      github: "BorderMate",
+      site: "BorderMate.io",
+      fullDescription: "BorderMate capture la voix dans le navigateur, la transcrit avec l'API Web Speech, traduit le texte via LibreTranslate avec des secours vers Lingva et MyMemory, et lit l'audio avec une voix naturelle en utilisant l'API Web Speech Synthesis",
+    },
+    {
+      title: "RayTracer",
+      description: "Moteur de rendu hors ligne capable de générer des images 3D réalistes.",
+      feature: "Tracé de rayons, Rendu 3D, Programmation graphique",
+      stack: "C++",
+      github: "RayTracingImplementation",
+      fullDescription: "RayTracingImplementation est un projet C++ qui implémente un algorithme de base de tracé de rayons pour rendre des scènes 3D avec un éclairage et des ombres réalistes. Il démontre les concepts fondamentaux de l'infographie et des techniques de rendu.",
+    },
+    {
+      title: "DancingArmadillo",
+      description: "Expérimentation de shaders glsl",
+      feature: "Shaders 3D, WebGL, GLSL, Animation, Interactif",
+      stack: "JavaScript, HTML, GLSL, Three.js",
+      github: "DancingArmadillo",
+      site: "DancingArmadillo.io",
+      fullDescription: "DancingArmadillo présente l'expérimentation avec des shaders GLSL, créant des animations 3D dynamiques et interactives en utilisant WebGL et Three.js. Appuyez sur 'p' pour démarrer la musique. Utilisez 'q', 'w' et 'e' pour contrôler les effets comme un vrai DJ.",
+    },
+    {
+      title: "CharacterAnimation",
+      description: "De la construction d'os à l'animation complète dans ThreeJs",
+      feature: "Rendu 3D en temps réel d'un modèle humain, Basculer la visibilité des os et du maillage, Déclencher l'animation de course",
+      stack: "JavaScript, Three.js, GLSL",
+      github: "CharacterAnimation",
+      site: "CharacterAnimation.io",
+      fullDescription: "Ce projet est un visualiseur et animateur de modèle humain 3D interactif construit dans un cours d'infographie (IFT3355). Il permet aux utilisateurs de manipuler une figure humaine, de déclencher des animations et de basculer la visibilité des os et des maillages à l'aide de commandes clavier. L'application est implémentée en JavaScript et WebGL, avec des shaders et des ressources organisés dans l'espace de travail.",
+    }
+  ]
+};
