@@ -1,7 +1,7 @@
 export const en = {
   header: {
     name: "Farah Mohamed",
-    title: "Software Engineer",
+    title: "Software Developer",
     resume: "Resume",
   },
   projects: [

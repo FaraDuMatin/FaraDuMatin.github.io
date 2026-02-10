@@ -24,6 +24,8 @@ export const projects = [
         stack: "React, Django, PostgreSQL, Redis, Solace Agent Mesh, Docker, LLMs API (Claude 4.5)",
         github: "uOttaMail",
         githubLink: "https://github.com/Divi76h/uOttaMail",
+        demo: "Video Demo",
+        demoLink: "https://www.youtube.com/watch?v=8X3vqP44T_I/",
         fullDescription: "An intelligent email security system that uses multiple AI agents to analyze incoming emails in real-time for spam detection, priority classification, tone analysis, action item extraction, and malicious URL scanning.",
         accentColor: "#282c39"
     },

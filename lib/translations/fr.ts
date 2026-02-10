@@ -1,7 +1,7 @@
 export const fr = {
   header: {
     name: "Farah Mohamed",
-    title: "Ingénieure Logicielle",
+    title: "Développeur de logiciels",
     resume: "CV",
   },
   projects: [
