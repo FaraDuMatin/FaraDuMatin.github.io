@@ -6,17 +6,17 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://faradumatin.github.io/'),
-  title: "Farah Mohamed - Software Engineer Portfolio",
-  description: "My software Engineer Portfolio. View my projects including CollaBoard, uOttaMail, UnderPath and BorderMate.",
-  keywords: ["Farah Mohamed", "Software Engineer", "Portfolio", "React", "Next.js", "TypeScript"],
+  title: "Farah Mohamed - Software Developer Portfolio",
+  description: "My software Developer Portfolio. View my projects including CollaBoard, uOttaMail, UnderPath and BorderMate.",
+  keywords: ["Farah Mohamed", "Software Developer", "Portfolio", "React", "Next.js", "TypeScript"],
   authors: [{ name: "Farah Mohamed" }],
   creator: "Farah Mohamed",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://faradumatin.github.io/",
-    title: "Farah Mohamed - Software Engineer Portfolio",
-    description: "My software Engineer Portfolio. View my projects including CollaBoard, uOttaMail, UnderPath and BorderMate.",
+    title: "Farah Mohamed - Software Developer Portfolio",
+    description: "My software Developer Portfolio. View my projects including CollaBoard, uOttaMail, UnderPath and BorderMate.",
     siteName: "Farah Mohamed Portfolio",
     
   },
