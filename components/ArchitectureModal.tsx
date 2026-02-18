@@ -46,7 +46,7 @@ export default function ArchitectureModal({ architecturePath, accentColor }: Arc
                             <X size={32} />
                         </button>
                         <Image
-                            src={architecturePath}
+                            src={`/architecture${architecturePath}`}
                             alt="Architecture diagram"
                             width={1200}
                             height={800}

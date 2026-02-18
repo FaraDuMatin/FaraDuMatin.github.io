@@ -13,7 +13,7 @@ export const projects = [
         siteLink: "https://colla-board-fwhs.vercel.app/",
         fullDescription: "CollaBoard enables multiple users to collaborate on a shared digital whiteboard in real-time. Users can draw, add text, and interact with the board simultaneously while seeing changes from other participants instantly.",
         accentColor: "#488ce6",
-        architecture: "/architecture/collaboard-arch.png"
+        architecture: "/collaboard.png"
     },
     {
         title: "uOttaMail",
@@ -43,7 +43,8 @@ export const projects = [
         site: "Fincheck.app",
         siteLink: "https://finchecks.vercel.app//",
         fullDescription: "A lightweight service that analyzes uploaded transactions and automatically assigns categories to simplify expense tracking. Exposes a clean API for the React.js frontend and supports manual edits, CSV uploads, and summary statistics.",
-        accentColor: "#00260b"
+        accentColor: "#00260b",
+        architecture: "/fincheck.png"
     },
     {
         title: "BorderMate",
