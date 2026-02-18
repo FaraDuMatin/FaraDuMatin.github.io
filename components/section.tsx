@@ -1,4 +1,5 @@
 import EmblaCarousel from './carousel/EmblaCarousel';
+import ArchitectureModal from './ArchitectureModal';
 import '../components/carousel/embla.css';
 
 function addLineBreak(str: string) {
@@ -38,11 +39,13 @@ interface SectionProps {
     slideCount?: number;
     imageExtensions?: string[];
     accentColor: string;
+    architecture?: string;
 }
 
-export default function Section({title, description, feature, stack, github, githubLink, site, siteLink, demo, demoLink, fullDescription, root, slideCount, imageExtensions, accentColor }: SectionProps) {
+export default function Section({title, description, feature, stack, github, githubLink, site, siteLink, demo, demoLink, fullDescription, root, slideCount, imageExtensions, accentColor, architecture }: SectionProps) {
     return (
-        <section id={root} style={{ boxShadow: `0 0 4px ${accentColor}, 0px 0px 4px ${accentColor} inset`}}  className="w-full bg-black max-w-6xl p-6 sm:p-12 py-12 sm:py-20 border-x border-b border-gray-800 flex flex-col">
+        <section id={root} style={{ boxShadow: `0 0 4px ${accentColor}, 0px 0px 4px ${accentColor} inset`}}  className="relative w-full bg-black max-w-6xl p-6 sm:p-12 py-12 sm:py-20 border-x border-b border-gray-800 flex flex-col">
+            {architecture && <ArchitectureModal architecturePath={architecture} accentColor={accentColor} />}
             <h2 style={{ borderLeft: `4px  ${accentColor}` }} className="-ml-6 sm:-ml-12 pl-4 sm:pl-10 text-3xl sm:text-5xl font-semibold text-zinc-400">
                 <span style={{ color: accentColor }} className="font-bold">{title}. </span>
                 <span className="block sm:inline">{description}</span>
@@ -50,7 +53,7 @@ export default function Section({title, description, feature, stack, github, git
             <EmblaCarousel slides={(root && slideCount) ? generateSlidePaths(root, slideCount, imageExtensions) : ["placeholder.png"]} options={{}} />
             <div className="w-full flex flex-col md:flex-row gap-10">
                 <div className="max-w-sm text-zinc-400 text-xl sm:text-2xl flex flex-col gap-8">
-                    <p><span style={{ color: accentColor }} className="font-bold">Stack:</span> {stack}</p>
+                    {/* <p><span style={{ color: accentColor }} className="font-bold">Stack:</span> {stack}</p> */}
                     <p><span style={{ color: accentColor }} className="font-bold">Features:</span> {feature}</p>
                     {(github && githubLink) &&
                         <p><span style={{ color: accentColor }} className="font-bold">Github:</span> <a className="hover:underline" href={githubLink} target="_blank" rel="noopener noreferrer">{github}</a></p>

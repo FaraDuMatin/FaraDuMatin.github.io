@@ -12,7 +12,8 @@ export const projects = [
         site: "collaboard.app",
         siteLink: "https://colla-board-fwhs.vercel.app/",
         fullDescription: "CollaBoard enables multiple users to collaborate on a shared digital whiteboard in real-time. Users can draw, add text, and interact with the board simultaneously while seeing changes from other participants instantly.",
-        accentColor: "#488ce6"
+        accentColor: "#488ce6",
+        architecture: "/architecture/collaboard-arch.png"
     },
     {
         title: "uOttaMail",
