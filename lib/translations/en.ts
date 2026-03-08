@@ -23,6 +23,15 @@ export const en = {
       fullDescription: "An intelligent email security system that uses multiple AI agents to analyze incoming emails in real-time for spam detection, priority classification, tone analysis, action item extraction, and malicious URL scanning.",
     },
     {
+      title: "LLM-Lens",
+      description: "LLMO audit tool for analyzing and visualizing LLM outputs.",
+      feature: "Adaptability to various LLMs, Adaptibility to various website structures, Comprehensive analysis and visualization, Actionable recommendations, User-friendly interface",
+      stack: "Next.js, React, TypeScript, HTML, Tailwind CSS, Python, FastAPI, Gemini API",
+      github: "LLM-Lens",
+      site: "LLM-Lens.app",
+      fullDescription: "LLM Lens is an advanced LLM Optimization (LLMO) audit tool that analyzes websites to improve their visibility and discoverability in AI-powered search engines and RAG (Retrieval-Augmented Generation) systems.",
+    },
+    {
       title: "Fincheck",
       description: "Finance Tracker and Dashboard",
       feature: "Transaction Analysis, Automatic Categorization, CSV Upload, Manual Edits, Summary Statistics",

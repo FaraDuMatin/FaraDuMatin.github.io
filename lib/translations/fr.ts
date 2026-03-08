@@ -23,6 +23,15 @@ export const fr = {
       fullDescription: "Un système de sécurité des e-mails intelligent qui utilise plusieurs agents IA pour analyser les e-mails entrants en temps réel pour la détection de spam, la classification des priorités, l'analyse du ton, l'extraction d'éléments d'action et l'analyse d'URL malveillantes.",
     },
     {
+      title: "LLM-Lens",
+      description: "Outil d'audit LLMO pour analyser et visualiser les sorties de LLM.",
+      feature: "Adaptabilité à divers LLMs, Adaptabilité à diverses structures de sites Web, Analyse et visualisation complètes, Recommandations exploitables, Interface conviviale",
+      stack: "Next.js, React, TypeScript, HTML, Tailwind CSS, Python, FastAPI, Gemini API",
+      github: "LLM-Lens",
+      site: "LLM-Lens.app",
+      fullDescription: "LLM Lens est un outil d'audit d'optimisation LLM (LLMO) avancé qui analyse les sites Web pour améliorer leur visibilité et leur découvrabilité dans les moteurs de recherche alimentés par l'IA et les systèmes RAG (Retrieval-Augmented Generation).",
+    },
+    {
       title: "Fincheck",
       description: "Suivi financier et tableau de bord",
       feature: "Analyse de transactions, Catégorisation automatique, Téléchargement CSV, Modifications manuelles, Statistiques récapitulatives",

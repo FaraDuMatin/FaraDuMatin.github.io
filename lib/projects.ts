@@ -31,6 +31,22 @@ export const projects = [
         accentColor: "#282c39"
     },
     {
+        title: "LLM-Lens",
+        description: "LLMO audit tool for analyzing and visualizing LLM outputs.",
+        root: "llm-lense",
+        slideCount: 6,
+        imageExtensions: ["png", "png", "png", "png", "png", "png"],
+        feature: "Adaptability to various LLMs, Adaptibility to various website structures, Comprehensive analysis and visualization, Actionable recommendations, User-friendly interface",
+        stack: "Next.js, React, TypeScript, HTML, Tailwind CSS, Python, FastAPI, Gemini API",
+        github: "LLM-Lens",
+        githubLink: "https://github.com/FaraDuMatin/llm-lense",
+        site: "LLM-Lens.app",
+        siteLink: "https://llm-lens-six.vercel.app/",
+        fullDescription: "LLM Lens is an advanced LLM Optimization (LLMO) audit tool that analyzes websites to improve their visibility and discoverability in AI-powered search engines and RAG (Retrieval-Augmented Generation) systems.",
+        accentColor: "#00e5ff",
+        architecture: "/llm-lens.png"
+    },
+    {
         title: "Fincheck",
         description: "Finance Tracker and Dashboard",
         root: "fincheck",
