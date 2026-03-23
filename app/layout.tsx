@@ -16,9 +16,22 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://faradumatin.github.io/",
     title: "Farah Mohamed - Software Developer Portfolio",
-    description: "My software Developer Portfolio. View my projects including CollaBoard, uOttaMail, UnderPath and BorderMate.",
+    description: "A collection of Full-stack, 3D, and AI projects engineered for performance and user experience.",
     siteName: "Farah Mohamed Portfolio",
-    
+    images: [
+      {
+        url: '/og/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'Farah Mohamed - portfolio preview',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Farah Mohamed - Software Developer Portfolio',
+    description: 'A collection of Full-stack, 3D, and AI projects engineered for performance and user experience.',
+    images: ['/og/og.png'],
   },
   robots: {
     index: true,
