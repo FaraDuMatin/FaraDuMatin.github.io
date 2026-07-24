@@ -68,7 +68,7 @@ const EmblaCarousel = ({ slides, options }: EmblaCarouselProps) => {
                 <div className="embla__container">
                     {slides.map((image: string, index: number) => (
                         <div className="embla__slide" key={index}>
-                            <img src={image} className="w-full" />
+                            <img src={image} className="w-full max-h-[70vh] object-contain" />
                         </div>
                     ))}
                 </div>
