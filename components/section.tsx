@@ -56,21 +56,21 @@ export default function Section({title, description, feature, stack, github, git
                 <div className="max-w-sm text-zinc-400 text-xl sm:text-2xl flex flex-col gap-8">
                     {(site && siteLink) &&
                         <a href={siteLink} target="_blank" rel="noopener noreferrer" style={{ backgroundImage: `radial-gradient(ellipse 55% 70% at 100% 0%, ${accentColor}59, transparent)`, '--accent': accentColor } as CSSProperties} className="group flex w-full items-center gap-2 rounded-xl border p-4 transition border-neutral-800 bg-neutral-950 shadow-sm hover:border-[color:var(--accent)]">
-                            <span style={{ color: accentColor }} className="font-bold">Site:</span>
-                            <span className="text-zinc-400 group-hover:underline">{site}</span>
+                            <span style={{ color: accentColor }} className="font-bold group-hover:underline">Site</span>
                         </a>
                     }
                     {(demo && demoLink) &&
                         <a href={demoLink} target="_blank" rel="noopener noreferrer" style={{ backgroundImage: `radial-gradient(ellipse 55% 70% at 100% 0%, ${accentColor}59, transparent)`, '--accent': accentColor } as CSSProperties} className="group flex w-full items-center gap-2 rounded-xl border p-4 transition border-neutral-800 bg-neutral-950 shadow-sm hover:border-[color:var(--accent)]">
-                            <span style={{ color: accentColor }} className="font-bold">Demo:</span>
-                            <span className="text-zinc-400 group-hover:underline">{demo}</span>
+                            <span style={{ color: accentColor }} className="font-bold group-hover:underline">Demo</span>
                         </a>
                     }
                     {/* <p><span style={{ color: accentColor }} className="font-bold">Stack:</span> {stack}</p> */}
-                    <p className="w-full rounded-xl border border-neutral-800 bg-neutral-950 p-4 shadow-sm"><span style={{ color: accentColor }} className="font-bold">Features:</span> {feature}</p>
                     {(github && githubLink) &&
-                        <p className="w-full rounded-xl border border-neutral-800 bg-neutral-950 p-4 shadow-sm"><span style={{ color: accentColor }} className="font-bold">Github:</span> <a className="hover:underline" href={githubLink} target="_blank" rel="noopener noreferrer">{github}</a></p>
+                        <a href={githubLink} target="_blank" rel="noopener noreferrer" style={{ backgroundImage: `radial-gradient(ellipse 55% 70% at 100% 0%, ${accentColor}59, transparent)`, '--accent': accentColor } as CSSProperties} className="group flex w-full items-center gap-2 rounded-xl border p-4 transition border-neutral-800 bg-neutral-950 shadow-sm hover:border-[color:var(--accent)]">
+                            <span style={{ color: accentColor }} className="font-bold group-hover:underline">Github</span>
+                        </a>
                     }
+                    <p className="w-full rounded-xl border border-neutral-800 bg-neutral-950 p-4 shadow-sm"><span style={{ color: accentColor }} className="font-bold">Features:</span> {feature}</p>
                 </div>
                 <div className="md:w-0 md:flex-1 text-zinc-400 text-base sm:text-lg leading-relaxed">{addLineBreak(fullDescription)}</div>
             </div>
