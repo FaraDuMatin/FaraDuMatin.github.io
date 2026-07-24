@@ -18,7 +18,7 @@ export const en = {
       title: "uOttaMail",
       description: "AI-Powered Inbox Firewall",
       feature: "Spam Detection, Priority Classification, Tone Analysis, Action Item Extraction, Malicious URL Scanning",
-      stack: "React, Django, PostgreSQL, Redis, Solace Agent Mesh, Docker, LLMs API (Claude 4, Gemini Pro, GPT-5)",
+      stack: "React, Django, PostgreSQL, Redis, Solace Agent Mesh, Docker, Claude, Gemini, GPT",
       github: "uOttaMail",
       fullDescription: "An intelligent email security system that uses multiple AI agents to analyze incoming emails in real-time for spam detection, priority classification, tone analysis, action item extraction, and malicious URL scanning.",
     },

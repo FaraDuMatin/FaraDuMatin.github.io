@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import type { CSSProperties } from 'react';
 import { Layers, X } from 'lucide-react';
 import Image from 'next/image';
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@/components/ui/tooltip";
 
 interface ArchitectureModalProps {
     architecturePath: string;
@@ -15,19 +15,15 @@ export default function ArchitectureModal({ architecturePath, accentColor }: Arc
 
     return (
         <>
-            <TooltipProvider delayDuration={0}>
-                <Tooltip>
-                    <TooltipTrigger
-                        onClick={() => setIsOpen(true)}
-                        style={{ color: accentColor }}
-                        className="absolute top-6 right-6 sm:top-12 sm:right-12 p-2 rounded-lg hover:bg-zinc-800 transition-colors duration-200"
-                        aria-label="View system architecture"
-                    >
-                        <Layers size={28} />
-                    </TooltipTrigger>
-                    <TooltipContent side="top">View Architecture</TooltipContent>
-                </Tooltip>
-            </TooltipProvider>
+            <button
+                onClick={() => setIsOpen(true)}
+                style={{ '--accent': accentColor } as CSSProperties}
+                className="group inline-flex items-center gap-2 rounded-lg border border-neutral-800 bg-neutral-950 px-4 py-2 text-sm font-medium text-zinc-300 shadow-sm transition hover:border-[color:var(--accent)] hover:text-white"
+                aria-label="View system architecture"
+            >
+                <Layers className="h-4 w-4" style={{ color: accentColor }} />
+                Architecture
+            </button>
 
             {isOpen && (
                 <div

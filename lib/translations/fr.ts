@@ -18,7 +18,7 @@ export const fr = {
       title: "uOttaMail",
       description: "Pare-feu de boîte de réception alimenté par l'IA",
       feature: "Détection de spam, Classification des priorités, Analyse du ton, Extraction d'éléments d'action, Analyse d'URL malveillantes",
-      stack: "React, Django, PostgreSQL, Redis, Solace Agent Mesh, Docker, LLMs API (Claude 4, Gemini Pro, GPT-5)",
+      stack: "React, Django, PostgreSQL, Redis, Solace Agent Mesh, Docker, Claude , Gemini, GPT",
       github: "uOttaMail",
       fullDescription: "Un système de sécurité des e-mails intelligent qui utilise plusieurs agents IA pour analyser les e-mails entrants en temps réel pour la détection de spam, la classification des priorités, l'analyse du ton, l'extraction d'éléments d'action et l'analyse d'URL malveillantes.",
     },
