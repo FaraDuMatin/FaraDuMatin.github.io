@@ -5,16 +5,15 @@ export const en = {
     resume: "Resume",
   },
   projects: [
-    // HIDDEN — must stay commented in lockstep with lib/projects.ts (positional merge).
-    // {
-    //   title: "FORGE",
-    //   description: "Community platform that takes ideas from spark to shipped.",
-    //   feature: "Project Management, Public Task Boards, Community Voting, Internationalization, Serverless",
-    //   stack: "Next.js, React, TypeScript, Tailwind CSS, Prisma, Neon Postgres, next-intl, Vercel",
-    //   github: "FORGE",
-    //   site: "FORGE.app",
-    //   fullDescription: "FORGE runs community projects the way open source runs software: public task boards, credited contributors, and open build logs. Only three projects hold a spotlight slot at a time, earned through readiness criteria and a lottery, so effort concentrates instead of scattering. Maintainers can name a successor to relay a project onward, and finished projects become forkable playbooks that other communities can reuse. Signup takes a name, an email, and a secret link, with no accounts, no ads, and no leaderboards.",
-    // },
+    {
+      title: "FORGE",
+      description: "Community platform that takes ideas from spark to shipped.",
+      feature: "Project Management, Public Task Boards, Community Voting, Internationalization, Serverless",
+      stack: "Next.js, React, TypeScript, Tailwind CSS, Prisma, Neon Postgres, next-intl, Vercel",
+      github: "FORGE",
+      site: "FORGE.app",
+      fullDescription: "FORGE runs community projects the way open source runs software: public task boards, credited contributors, and open build logs. Only three projects hold a spotlight slot at a time, earned through readiness criteria and a lottery, so effort concentrates instead of scattering. Maintainers can name a successor to relay a project onward, and finished projects become forkable playbooks that other communities can reuse. Signup takes a name, an email, and a secret link, with no accounts, no ads, and no leaderboards.",
+    },
     {
       title: "FirstClient",
       description: "Practice a full freelance client cycle with a live AI client.",

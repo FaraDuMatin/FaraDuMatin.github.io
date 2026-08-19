@@ -5,16 +5,15 @@ export const fr = {
     resume: "CV",
   },
   projects: [
-    // HIDDEN — must stay commented in lockstep with lib/projects.ts (positional merge).
-    // {
-    //   title: "FORGE",
-    //   description: "Plateforme communautaire qui mène les idées de l'étincelle à la réalisation.",
-    //   feature: "Gestion de projet, Tableaux de tâches publics, Vote communautaire, Internationalisation, Serverless",
-    //   stack: "Next.js, React, TypeScript, Tailwind CSS, Prisma, Neon Postgres, next-intl, Vercel",
-    //   github: "FORGE",
-    //   site: "FORGE.app",
-    //   fullDescription: "FORGE gère les projets communautaires comme l'open source gère le logiciel : tableaux de tâches publics, contributeurs crédités et journaux de construction ouverts. Seuls trois projets occupent une place en vedette à la fois, obtenue selon des critères de préparation et une loterie, afin que les efforts se concentrent au lieu de se disperser. Les responsables peuvent désigner un successeur pour transmettre un projet, et les projets terminés deviennent des guides réutilisables par d'autres communautés. L'inscription demande un nom, un courriel et un lien secret, sans compte, sans publicité et sans classement.",
-    // },
+    {
+      title: "FORGE",
+      description: "Plateforme communautaire qui mène les idées de l'étincelle à la réalisation.",
+      feature: "Gestion de projet, Tableaux de tâches publics, Vote communautaire, Internationalisation, Serverless",
+      stack: "Next.js, React, TypeScript, Tailwind CSS, Prisma, Neon Postgres, next-intl, Vercel",
+      github: "FORGE",
+      site: "FORGE.app",
+      fullDescription: "FORGE gère les projets communautaires comme l'open source gère le logiciel : tableaux de tâches publics, contributeurs crédités et journaux de construction ouverts. Seuls trois projets occupent une place en vedette à la fois, obtenue selon des critères de préparation et une loterie, afin que les efforts se concentrent au lieu de se disperser. Les responsables peuvent désigner un successeur pour transmettre un projet, et les projets terminés deviennent des guides réutilisables par d'autres communautés. L'inscription demande un nom, un courriel et un lien secret, sans compte, sans publicité et sans classement.",
+    },
     {
       title: "FirstClient",
       description: "Répétez un cycle client complet en freelance avec un client IA en direct.",

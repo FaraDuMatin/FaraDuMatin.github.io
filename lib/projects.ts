@@ -1,21 +1,19 @@
 export const projects = [
-    // HIDDEN until forge-img1.png exists. Uncomment together with the matching
-    // entry at the same index in lib/translations/en.ts and fr.ts.
-    // {
-    //     title: "FORGE",
-    //     description: "Community platform that takes ideas from spark to shipped.",
-    //     root: "forge",
-    //     slideCount: 1,
-    //     imageExtensions: ["png"],
-    //     feature: "Project Management, Public Task Boards, Community Voting, Internationalization, Serverless",
-    //     stack: "Next.js, React, TypeScript, Tailwind CSS, Prisma, Neon Postgres, next-intl, Vercel",
-    //     github: "FORGE",
-    //     githubLink: "https://github.com/FaraDuMatin/FORGE",
-    //     site: "FORGE.app",
-    //     siteLink: "https://forge-eight-flame.vercel.app/",
-    //     fullDescription: "FORGE runs community projects the way open source runs software: public task boards, credited contributors, and open build logs. Only three projects hold a spotlight slot at a time, earned through readiness criteria and a lottery, so effort concentrates instead of scattering. Maintainers can name a successor to relay a project onward, and finished projects become forkable playbooks that other communities can reuse. Signup takes a name, an email, and a secret link, with no accounts, no ads, and no leaderboards.",
-    //     accentColor: "#3B8C5A"
-    // },
+    {
+        title: "FORGE",
+        description: "Community platform that takes ideas from spark to shipped.",
+        root: "forge",
+        slideCount: 7,
+        imageExtensions: ["png", "png", "png", "png", "png", "png", "png"],
+        feature: "Project Management, Public Task Boards, Community Voting, Internationalization, Serverless",
+        stack: "Next.js, React, TypeScript, Tailwind CSS, Prisma, Neon Postgres, next-intl, Vercel",
+        github: "FORGE",
+        githubLink: "https://github.com/FaraDuMatin/FORGE",
+        site: "FORGE.app",
+        siteLink: "https://forge-eight-flame.vercel.app/",
+        fullDescription: "FORGE runs community projects the way open source runs software: public task boards, credited contributors, and open build logs. Only three projects hold a spotlight slot at a time, earned through readiness criteria and a lottery, so effort concentrates instead of scattering. Maintainers can name a successor to relay a project onward, and finished projects become forkable playbooks that other communities can reuse. Signup takes a name, an email, and a secret link, with no accounts, no ads, and no leaderboards.",
+        accentColor: "#3B8C5A"
+    },
     {
         title: "FirstClient",
         description: "Practice a full freelance client cycle with a live AI client.",
