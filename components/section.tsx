@@ -89,31 +89,28 @@ export default function Section({title, description, feature, stack, github, git
                 {architecture && <ArchitectureModal architecturePath={architecture} accentColor={accentColor} />}
             </div>
             <EmblaCarousel slides={(root && slideCount) ? generateSlidePaths(root, slideCount, imageExtensions) : ["placeholder.png"]} options={{}} />
-            <div className="w-full flex flex-col md:flex-row gap-8 md:gap-10">
-                <div className="md:flex-1 text-zinc-300 text-base sm:text-lg leading-relaxed">{addLineBreak(fullDescription)}</div>
-                <aside style={{ borderColor: mix(accent, 25) }}
-                    className="md:w-2/5 shrink-0 self-start w-full flex flex-col gap-6 rounded-2xl border bg-neutral-950/70 p-5 sm:p-6">
+            <div className="w-full flex flex-col items-center gap-6 text-center">
+                <div>
+                    <h3 style={{ color: accent }} className="mb-3 text-xs font-bold uppercase tracking-[0.2em]">Features</h3>
+                    <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2">
+                        {feature.split(',').map((f, i) => (
+                            <li key={i} className="flex items-center gap-2.5 text-sm text-zinc-300">
+                                <span aria-hidden style={{ backgroundColor: accent }} className="h-1.5 w-1.5 shrink-0 rotate-45" />
+                                {f.trim()}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                {stack &&
                     <div>
-                        <h3 style={{ color: accent }} className="mb-3 text-xs font-bold uppercase tracking-[0.2em]">Features</h3>
-                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
-                            {feature.split(',').map((f, i) => (
-                                <li key={i} className="flex items-center gap-2.5 text-sm text-zinc-300">
-                                    <span aria-hidden style={{ backgroundColor: accent }} className="h-1.5 w-1.5 shrink-0 rotate-45" />
-                                    {f.trim()}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    {stack &&
-                        <div className="border-t border-neutral-800 pt-5">
-                            <h3 style={{ color: accent }} className="mb-3 text-xs font-bold uppercase tracking-[0.2em]">Stack</h3>
-                            <div className="flex flex-wrap gap-2">
-                                {stack.split(',').map((s, i) => <StackPill key={i} name={s.trim()} />)}
-                            </div>
+                        <h3 style={{ color: accent }} className="mb-3 text-xs font-bold uppercase tracking-[0.2em]">Stack</h3>
+                        <div className="flex flex-wrap justify-center gap-2">
+                            {stack.split(',').map((s, i) => <StackPill key={i} name={s.trim()} />)}
                         </div>
-                    }
-                </aside>
+                    </div>
+                }
             </div>
+            <div className="mt-10 w-full text-zinc-300 text-base sm:text-lg leading-relaxed">{addLineBreak(fullDescription)}</div>
         </section>
     );
 }
