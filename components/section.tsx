@@ -3,6 +3,7 @@ import { Github, Globe, Play } from 'lucide-react';
 import MagneticPill from './MagneticPill';
 import EmblaCarousel from './carousel/EmblaCarousel';
 import ArchitectureModal from './ArchitectureModal';
+import { getTech, readableColor } from '@/lib/techStack';
 import '../components/carousel/embla.css';
 
 function LinkPill({ href, label, icon: Icon, accentColor }: { href: string; label: string; icon: typeof Github; accentColor: string }) {
@@ -12,6 +13,24 @@ function LinkPill({ href, label, icon: Icon, accentColor }: { href: string; labe
             <Icon className="h-4 w-4" style={{ color: accentColor }} />
             {label}
         </a>
+    );
+}
+
+function mix(color: string, percent: number) {
+    return `color-mix(in srgb, ${color} ${percent}%, transparent)`;
+}
+
+function StackPill({ name }: { name: string }) {
+    const { color, icon } = getTech(name);
+    const mask = icon ? `url(/tech/${icon}.svg) center / contain no-repeat` : undefined;
+    return (
+        <span style={{ borderColor: mix(color, 35), backgroundColor: mix(color, 10) }}
+            className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-sm text-zinc-200 transition-colors hover:text-white">
+            {icon
+                ? <span aria-hidden style={{ backgroundColor: color, mask, WebkitMask: mask }} className="h-3.5 w-3.5 shrink-0" />
+                : <span aria-hidden style={{ backgroundColor: color }} className="h-2 w-2 shrink-0 rounded-full" />}
+            {name}
+        </span>
     );
 }
 
@@ -56,8 +75,9 @@ interface SectionProps {
 }
 
 export default function Section({title, description, feature, stack, github, githubLink, site, siteLink, demo, demoLink, fullDescription, root, slideCount, imageExtensions, accentColor, architecture }: SectionProps) {
+    const accent = readableColor(accentColor);
     return (
-        <section id={root} style={{ boxShadow: `0 0 4px ${accentColor}, 0px 0px 4px ${accentColor} inset`}}  className="relative w-full bg-black max-w-6xl p-6 sm:p-12 py-12 sm:py-20 border-x border-b border-gray-800 flex flex-col">
+        <section id={root} style={{ boxShadow: `0 0 4px ${accentColor}, 0px 0px 4px ${accentColor} inset`}}  className="relative w-full bg-black max-w-6xl md:scroll-mt-16 animate-in fade-in duration-500 p-6 sm:p-12 py-12 sm:py-20 border-x border-b border-gray-800 flex flex-col">
             <h2 style={{ borderLeft: `4px  ${accentColor}` }} className="-ml-6 sm:-ml-12 pl-4 sm:pl-10 text-3xl sm:text-5xl font-semibold text-zinc-400">
                 <span style={{ color: accentColor }} className="font-bold">{title}. </span>
                 <span className="block sm:inline">{description}</span>
@@ -69,30 +89,30 @@ export default function Section({title, description, feature, stack, github, git
                 {architecture && <ArchitectureModal architecturePath={architecture} accentColor={accentColor} />}
             </div>
             <EmblaCarousel slides={(root && slideCount) ? generateSlidePaths(root, slideCount, imageExtensions) : ["placeholder.png"]} options={{}} />
-            <div className="w-full flex flex-col gap-10">
-                <div className="w-full flex flex-col md:flex-row gap-10">
-                    <div className="md:w-2/5 shrink-0 flex flex-col gap-6">
-                        <div>
-                            <h3 style={{ color: accentColor }} className="mb-3 text-sm font-bold uppercase tracking-wider">Features</h3>
+            <div className="w-full flex flex-col md:flex-row gap-8 md:gap-10">
+                <div className="md:flex-1 text-zinc-300 text-base sm:text-lg leading-relaxed">{addLineBreak(fullDescription)}</div>
+                <aside style={{ borderColor: mix(accent, 25) }}
+                    className="md:w-2/5 shrink-0 self-start w-full flex flex-col gap-6 rounded-2xl border bg-neutral-950/70 p-5 sm:p-6">
+                    <div>
+                        <h3 style={{ color: accent }} className="mb-3 text-xs font-bold uppercase tracking-[0.2em]">Features</h3>
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
+                            {feature.split(',').map((f, i) => (
+                                <li key={i} className="flex items-center gap-2.5 text-sm text-zinc-300">
+                                    <span aria-hidden style={{ backgroundColor: accent }} className="h-1.5 w-1.5 shrink-0 rotate-45" />
+                                    {f.trim()}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    {stack &&
+                        <div className="border-t border-neutral-800 pt-5">
+                            <h3 style={{ color: accent }} className="mb-3 text-xs font-bold uppercase tracking-[0.2em]">Stack</h3>
                             <div className="flex flex-wrap gap-2">
-                                {feature.split(',').map((f, i) => (
-                                    <span key={i} className="rounded-full border border-neutral-800 bg-neutral-950 px-3 py-1 text-sm text-zinc-400">{f.trim()}</span>
-                                ))}
+                                {stack.split(',').map((s, i) => <StackPill key={i} name={s.trim()} />)}
                             </div>
                         </div>
-                        {stack &&
-                            <div>
-                                <h3 style={{ color: accentColor }} className="mb-3 text-sm font-bold uppercase tracking-wider">Stack</h3>
-                                <div className="flex flex-wrap gap-2">
-                                    {stack.split(',').map((s, i) => (
-                                        <span key={i} className="rounded-full border border-neutral-800 bg-neutral-950 px-3 py-1 text-sm text-zinc-400">{s.trim()}</span>
-                                    ))}
-                                </div>
-                            </div>
-                        }
-                    </div>
-                    <div className="md:flex-1 text-zinc-300 text-base sm:text-lg leading-relaxed">{addLineBreak(fullDescription)}</div>
-                </div>
+                    }
+                </aside>
             </div>
         </section>
     );

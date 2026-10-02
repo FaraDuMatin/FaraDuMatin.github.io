@@ -4,6 +4,11 @@ export const fr = {
     title: "Développeur de logiciels",
     resume: "CV",
   },
+  filters: {
+    label: "Filtrer les projets",
+    all: "Tous",
+    categories: { "3D": "3D", "AI": "IA", "Full Stack": "Full Stack" },
+  },
   projects: [
     {
       title: "FORGE",
