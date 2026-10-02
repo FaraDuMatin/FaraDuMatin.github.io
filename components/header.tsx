@@ -1,9 +1,10 @@
 'use client';
 
+import type { ReactNode } from 'react';
 import { useLanguage } from '@/lib/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 
-export default function Header() {
+export default function Header({ children }: { children?: ReactNode }) {
   const { t, language } = useLanguage();
   
   return (
@@ -60,6 +61,7 @@ export default function Header() {
           {t.header.resume}
         </a>
       </div>
+      {children}
     </header>
   );
 }

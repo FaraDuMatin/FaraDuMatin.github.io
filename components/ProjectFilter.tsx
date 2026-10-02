@@ -18,9 +18,8 @@ export default function ProjectFilter({ active, counts, total, onChange }: Proje
     ];
 
     return (
-        <nav aria-label={t.filters.label}
-            className="md:sticky top-0 z-40 w-full max-w-6xl border-x border-b border-zinc-800 bg-black/80 backdrop-blur-md px-6 sm:px-12 py-3">
-            <div className="flex flex-wrap items-center gap-2">
+        <nav aria-label={t.filters.label} className="mt-10 sm:mt-14">
+            <div className="flex flex-wrap items-center justify-center gap-2">
                 {options.map(({ value, label, count }) => {
                     const isActive = active === value;
                     return (

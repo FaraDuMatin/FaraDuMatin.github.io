@@ -77,7 +77,7 @@ interface SectionProps {
 export default function Section({title, description, feature, stack, github, githubLink, site, siteLink, demo, demoLink, fullDescription, root, slideCount, imageExtensions, accentColor, architecture }: SectionProps) {
     const accent = readableColor(accentColor);
     return (
-        <section id={root} style={{ boxShadow: `0 0 4px ${accentColor}, 0px 0px 4px ${accentColor} inset`}}  className="relative w-full bg-black max-w-6xl md:scroll-mt-16 animate-in fade-in duration-500 p-6 sm:p-12 py-12 sm:py-20 border-x border-b border-gray-800 flex flex-col">
+        <section id={root} style={{ boxShadow: `0 0 4px ${accentColor}, 0px 0px 4px ${accentColor} inset`}}  className="relative w-full bg-black max-w-6xl animate-in fade-in duration-500 p-6 sm:p-12 py-12 sm:py-20 border-x border-b border-gray-800 flex flex-col">
             <h2 style={{ borderLeft: `4px  ${accentColor}` }} className="-ml-6 sm:-ml-12 pl-4 sm:pl-10 text-3xl sm:text-5xl font-semibold text-zinc-400">
                 <span style={{ color: accentColor }} className="font-bold">{title}. </span>
                 <span className="block sm:inline">{description}</span>

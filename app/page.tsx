@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import Header from '@/components/header';
 import Section from '@/components/section';
 import ReturnButton from '@/components/returnButton';
@@ -16,26 +16,17 @@ const counts = Object.fromEntries(
 export default function Home() {
   const { t } = useLanguage();
   const [filter, setFilter] = useState<Category | null>(null);
-  const filterAnchor = useRef<HTMLDivElement>(null);
 
   const visibleProjects = useMemo(
     () => filter ? projects.filter(p => p.categories.includes(filter)) : projects,
     [filter]
   );
 
-  function changeFilter(category: Category | null) {
-    setFilter(category);
-    const anchor = filterAnchor.current;
-    if (anchor && anchor.getBoundingClientRect().top < 0) {
-      window.scrollTo({ top: anchor.offsetTop, behavior: 'smooth' });
-    }
-  }
-
   return (
     <main className="w-full bg-black flex flex-col items-center">
-      <Header />
-      <div ref={filterAnchor} />
-      <ProjectFilter active={filter} counts={counts} total={projects.length} onChange={changeFilter} />
+      <Header>
+        <ProjectFilter active={filter} counts={counts} total={projects.length} onChange={setFilter} />
+      </Header>
 
       {projects.map((project, index) => {
         // Merge with the full, unfiltered index: t.projects is positional.

@@ -50,8 +50,10 @@ export default function Navigation({ projects }: NavigationProps) {
 
 
     const scrollToSection = (id: string) => {
-        // scrollIntoView honors the section's scroll-margin, which clears the sticky filter bar.
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+        const section = document.getElementById(id);
+        if (section) {
+            window.scrollTo({ top: section.offsetTop, behavior: "smooth" });
+        }
     };
 
     return (
