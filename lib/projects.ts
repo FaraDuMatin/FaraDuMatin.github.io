@@ -1,4 +1,4 @@
-export const categories = ["3D", "AI", "Full Stack"] as const;
+export const categories = ["3D", "AI", "Full Stack", "Real-time"] as const;
 export type Category = typeof categories[number];
 
 export const projects = [
@@ -15,14 +15,14 @@ export const projects = [
         githubLink: "https://github.com/FaraDuMatin/FORGE",
         site: "FORGE.app",
         siteLink: "https://forge-eight-flame.vercel.app/",
-        fullDescription: "FORGE runs community projects the way open source runs software: public task boards, credited contributors, and open build logs. Only three projects hold a spotlight slot at a time, earned through readiness criteria and a lottery, so effort concentrates instead of scattering. Maintainers can name a successor to relay a project onward, and finished projects become forkable playbooks that other communities can reuse. Signup takes a name, an email, and a secret link, with no accounts, no ads, and no leaderboards.",
+        fullDescription: "Public task boards, credited contributors and open build logs, run the way open source runs software. Only three projects hold the spotlight at once, chosen by readiness criteria and a lottery. Finished projects become forkable playbooks, and signing up needs no account.",
         accentColor: "#3B8C5A"
     },
     {
         title: "FirstClient",
         description: "Practice a full freelance client cycle with a live AI client.",
         root: "firstclient",
-        categories: ["AI", "Full Stack"],
+        categories: ["AI", "Full Stack", "Real-time"],
         slideCount: 7,
         imageExtensions: ["png", "png", "png", "png", "png", "png", "png"],
         feature: "Voice Agents, AI Evaluation, Computer Vision, Simulation, Real-time",
@@ -31,7 +31,7 @@ export const projects = [
         githubLink: "https://github.com/FaraDuMatin/FirstClient",
         site: "FirstClient.app",
         siteLink: "https://first-client-weld.vercel.app/",
-        fullDescription: "FirstClient lets new freelancers rehearse an entire client engagement before risking a real one. An ElevenLabs voice agent runs the live briefing and scoping call, the user submits deliverables, and Gemini evaluates the work with vision before the client comes back with revisions. The cycle closes with a debrief on what went well and what would have cost the contract.",
+        fullDescription: "An ElevenLabs voice agent plays the client in a live briefing and scoping call. You submit the work, Gemini reviews it with vision, and the client comes back with revisions. It ends with a debrief on what would have cost you the contract.",
         accentColor: "#593430"
     },
     {
@@ -45,14 +45,14 @@ export const projects = [
         stack: "Python, FastAPI, FastMCP, TypeScript, React, Three.js, Rerun, Unreal Engine 5",
         github: "PLUMB",
         githubLink: "https://github.com/zajalist/plumb",
-        fullDescription: "PLUMB gives LLM agents an improved spatial awareness in 3D worlds. It checks each proposed placement against physics gates such as center of mass and support polygon, and when a placement fails it returns the exact distance and direction that would fix it rather than a flat rejection. The system splits into a headless physics engine, a verdict and agent layer with a .wdf serialization language and a UE5 bridge, and an interactive studio for mesh baking and constraint editing.",
+        fullDescription: "Checks every placement an LLM agent proposes against physics rules like center of mass and support polygon. When one fails, it returns the exact distance and direction to fix it, not just a rejection. Includes a headless physics engine, an Unreal Engine 5 bridge and an editing studio.",
         accentColor: "#1F2933"
     },
     {
         title: "CollaBoard",
         description: "Collaborative whiteboard with real time features.",
         root: "collaboard",
-        categories: ["Full Stack"],
+        categories: ["Full Stack", "Real-time"],
         slideCount: 5,
         imageExtensions: ["gif", "png", "png", "png", "png"],
         feature: "Real-time, Multi-user, WebSockets, Authentication, Authorization",
@@ -61,7 +61,7 @@ export const projects = [
         githubLink: "https://github.com/FaraDuMatin/CollaBoard",
         site: "collaboard.app",
         siteLink: "https://colla-board-fwhs.vercel.app/",
-        fullDescription: "CollaBoard enables multiple users to collaborate on a shared digital whiteboard in real-time. Users can draw, add text, and interact with the board simultaneously while seeing changes from other participants instantly.",
+        fullDescription: "Several users draw and write on the same board and see each other's changes instantly. Convex keeps every client in sync, and Clerk handles sign-in and access control.",
         accentColor: "#488ce6",
         architecture: "/collaboard.png"
     },
@@ -69,7 +69,7 @@ export const projects = [
         title: "uOttaMail",
         description: "AI-Powered Inbox Firewall",
         root: "uottamail",
-        categories: ["AI", "Full Stack"],
+        categories: ["AI", "Full Stack", "Real-time"],
         slideCount: 5,
         imageExtensions: ["png", "png", "png", "png", "png"],
         feature: "Spam Detection, Classification, Sentiment Analysis, Multi-agent, Threat Detection",
@@ -78,7 +78,7 @@ export const projects = [
         githubLink: "https://github.com/Divi76h/uOttaMail",
         demo: "Video Demo",
         demoLink: "https://www.youtube.com/watch?v=8X3vqP44T_I/",
-        fullDescription: "An intelligent email security system that uses multiple AI agents to analyze incoming emails in real-time for spam detection, priority classification, tone analysis, action item extraction, and malicious URL scanning.",
+        fullDescription: "Several AI agents analyze each incoming email in real time. They flag spam and malicious links, rank priority, read the tone and pull out action items. Built on Solace Agent Mesh with a Django backend.",
         accentColor: "#282c39"
     },
     {
@@ -94,7 +94,7 @@ export const projects = [
         githubLink: "https://github.com/FaraDuMatin/llm-lense",
         site: "LLM-Lens.app",
         siteLink: "https://llm-lens-six.vercel.app/",
-        fullDescription: "LLM Lens is an advanced LLM Optimization (LLMO) audit tool that analyzes websites to improve their visibility and discoverability in AI-powered search engines and RAG (Retrieval-Augmented Generation) systems.",
+        fullDescription: "Audits how visible a website is to AI search engines and RAG systems. Think SEO, but for LLMs. A FastAPI service scrapes the site and a Next.js dashboard shows the results.",
         accentColor: "#00e5ff",
         architecture: "/llm-lens.png"
     },
@@ -111,7 +111,7 @@ export const projects = [
         githubLink: "https://github.com/FaraDuMatin/FinCheck",
         site: "Fincheck.app",
         siteLink: "https://finchecks.vercel.app//",
-        fullDescription: "A lightweight service that analyzes uploaded transactions and automatically assigns categories to simplify expense tracking. Exposes a clean API for the React.js frontend and supports manual edits, CSV uploads, and summary statistics.",
+        fullDescription: "Upload your transactions as a CSV and each one gets a category automatically. You can correct any of them by hand, and the dashboard summarizes your spending. A FastAPI backend serves the React frontend.",
         accentColor: "#00260b",
         architecture: "/fincheck.png"
     },
@@ -119,7 +119,7 @@ export const projects = [
         title: "BorderMate",
         description: "Browser-based speech-to-speech translator for real-time conversations.",
         root: "bordermate",
-        categories: ["Full Stack"],
+        categories: ["Real-time"],
         slideCount: 3,
         imageExtensions: ["png", "png", "png"],
         feature: "Speech-to-Text, Translation, Text-to-Speech, Real-time, Language Detection",
@@ -128,7 +128,7 @@ export const projects = [
         githubLink: "https://github.com/FaraDuMatin/BorderMate",
         site: "BorderMate.io",
         siteLink: "https://faradumatin.github.io/BorderMate/",
-        fullDescription: "BorderMate captures spoken input in the browser, transcribes it with the Web Speech API, translates text via LibreTranslate with fallbacks to Lingva and MyMemory, and plays natural-sounding audio using the Web Speech Synthesis API",
+        fullDescription: "Speak, and it transcribes, translates and reads the result aloud in the other language, all in the browser. If one translation service is down, it falls back to the next (LibreTranslate, then Lingva, then MyMemory), so the conversation keeps going.",
         accentColor: "#DECBA4"
     },
     // HIDDEN until luminawave-img1..9.png exist. Uncomment together with the
@@ -137,7 +137,7 @@ export const projects = [
     //     title: "LuminaWave",
     //     description: "Drop your sound and watch it come to life with mesmerizing visualizations.",
     //     root: "luminawave",
-    //     categories: ["3D", "Full Stack"],
+    //     categories: ["3D", "Full Stack", "Real-time"],
     //     slideCount: 9,
     //     imageExtensions: ["png", "png", "png", "png", "png", "png", "png", "png", "png"],
     //     feature: "Audio Visualization, FFT Analysis, 3D Rendering, Real-time, Shareable Captures",
@@ -160,7 +160,7 @@ export const projects = [
         stack: "C++",
         github: "RayTracingImplementation",
         githubLink: "https://github.com/FaraDuMatin/RayTracingImplementation",
-        fullDescription: "RayTracingImplementation is a C++ project that implements a basic ray tracing algorithm to render 3D scenes with realistic lighting and shadows. It demonstrates fundamental concepts of computer graphics and rendering techniques.",
+        fullDescription: "A ray tracer written from scratch in C++. It renders 3D scenes with realistic lighting and shadows.",
         accentColor: "#FFFFFF"
     },
     {
@@ -176,7 +176,7 @@ export const projects = [
         githubLink: "https://github.com/FaraDuMatin/DancingArmadillo",
         site: "DancingArmadillo.io",
         siteLink: "https://faradumatin.github.io/DancingArmadillo/",
-        fullDescription: "DancingArmadillo showcases experimentation with GLSL shaders, creating dynamic and interactive 3D animations using WebGL and Three.js. Press 'p' to start the music. Use 'q', 'w' and 'e' to control effects like a true DJ.",
+        fullDescription: "Custom GLSL shaders drive interactive 3D animation with Three.js. Press P to start the music, then Q, W and E to trigger effects like a DJ.",
         accentColor: "#766ad8"
     },
     {
@@ -192,7 +192,7 @@ export const projects = [
         githubLink: "https://github.com/FaraDuMatin/CharacterAnimation",
         site: "CharacterAnimation.io",
         siteLink: "https://faradumatin.github.io/CharacterAnimation/",
-        fullDescription: "This project is an interactive 3D human model viewer and animator built in a class on computer graphics (IFT3355). It allows users to manipulate a human figure, trigger animations, and toggle the visibility of bones and meshes using keyboard controls. The application is implemented in JavaScript and WebGL, with shaders and assets organized in the workspace.",
+        fullDescription: "Built for my IFT3355 computer graphics class. You can pose and animate a rigged human model, and keyboard controls trigger animations and show or hide the bones and mesh.",
         accentColor: "#dcceb6"
     }
 

@@ -7,7 +7,7 @@ export const en = {
   filters: {
     label: "Filter projects",
     all: "All",
-    categories: { "3D": "3D", "AI": "AI", "Full Stack": "Full Stack" },
+    categories: { "3D": "3D", "AI": "AI", "Full Stack": "Full Stack", "Real-time": "Real-time" },
   },
   projects: [
     {
@@ -17,7 +17,7 @@ export const en = {
       stack: "Next.js, React, TypeScript, Tailwind CSS, Prisma, Neon Postgres, next-intl, Vercel",
       github: "FORGE",
       site: "FORGE.app",
-      fullDescription: "FORGE runs community projects the way open source runs software: public task boards, credited contributors, and open build logs. Only three projects hold a spotlight slot at a time, earned through readiness criteria and a lottery, so effort concentrates instead of scattering. Maintainers can name a successor to relay a project onward, and finished projects become forkable playbooks that other communities can reuse. Signup takes a name, an email, and a secret link, with no accounts, no ads, and no leaderboards.",
+      fullDescription: "Public task boards, credited contributors and open build logs, run the way open source runs software. Only three projects hold the spotlight at once, chosen by readiness criteria and a lottery. Finished projects become forkable playbooks, and signing up needs no account.",
     },
     {
       title: "FirstClient",
@@ -26,7 +26,7 @@ export const en = {
       stack: "Next.js, React, TypeScript, Tailwind CSS, MongoDB Atlas, ElevenLabs Agents, Gemini API",
       github: "FirstClient",
       site: "FirstClient.app",
-      fullDescription: "FirstClient lets new freelancers rehearse an entire client engagement before risking a real one. An ElevenLabs voice agent runs the live briefing and scoping call, the user submits deliverables, and Gemini evaluates the work with vision before the client comes back with revisions. The cycle closes with a debrief on what went well and what would have cost the contract.",
+      fullDescription: "An ElevenLabs voice agent plays the client in a live briefing and scoping call. You submit the work, Gemini reviews it with vision, and the client comes back with revisions. It ends with a debrief on what would have cost you the contract.",
     },
     {
       title: "PLUMB",
@@ -34,7 +34,7 @@ export const en = {
       feature: "FullStack Development, Physics Validation, Constraint Solving, MCP Tooling, 3D Geometry, Agent Integration",
       stack: "Python, FastAPI, FastMCP, TypeScript, React, Three.js, Rerun, Unreal Engine 5",
       github: "PLUMB",
-      fullDescription: "PLUMB gives LLM agents an improved spatial awareness in 3D worlds. It checks each proposed placement against physics gates such as center of mass and support polygon, and when a placement fails it returns the exact distance and direction that would fix it rather than a flat rejection. The system splits into a headless physics engine, a verdict and agent layer with a .wdf serialization language and a UE5 bridge, and an interactive studio for mesh baking and constraint editing.",
+      fullDescription: "Checks every placement an LLM agent proposes against physics rules like center of mass and support polygon. When one fails, it returns the exact distance and direction to fix it, not just a rejection. Includes a headless physics engine, an Unreal Engine 5 bridge and an editing studio.",
     },
     {
       title: "CollaBoard",
@@ -43,7 +43,7 @@ export const en = {
       stack: "Next.js, React, TypeScript, HTML, Tailwind CSS, Convex, Clerk",
       github: "CollaBoard",
       site: "collaboard.app",
-      fullDescription: "CollaBoard enables multiple users to collaborate on a shared digital whiteboard in real-time. Users can draw, add text, and interact with the board simultaneously while seeing changes from other participants instantly.",
+      fullDescription: "Several users draw and write on the same board and see each other's changes instantly. Convex keeps every client in sync, and Clerk handles sign-in and access control.",
     },
     {
       title: "uOttaMail",
@@ -51,7 +51,7 @@ export const en = {
       feature: "Spam Detection, Classification, Sentiment Analysis, Multi-agent, Threat Detection",
       stack: "React, Django, PostgreSQL, Redis, Solace Agent Mesh, Docker, LLMs API",
       github: "uOttaMail",
-      fullDescription: "An intelligent email security system that uses multiple AI agents to analyze incoming emails in real-time for spam detection, priority classification, tone analysis, action item extraction, and malicious URL scanning.",
+      fullDescription: "Several AI agents analyze each incoming email in real time. They flag spam and malicious links, rank priority, read the tone and pull out action items. Built on Solace Agent Mesh with a Django backend.",
     },
     {
       title: "LLM-Lens",
@@ -60,7 +60,7 @@ export const en = {
       stack: "Next.js, React, TypeScript, HTML, Tailwind CSS, Python, FastAPI, Gemini API",
       github: "LLM-Lens",
       site: "LLM-Lens.app",
-      fullDescription: "LLM Lens is an advanced LLM Optimization (LLMO) audit tool that analyzes websites to improve their visibility and discoverability in AI-powered search engines and RAG (Retrieval-Augmented Generation) systems.",
+      fullDescription: "Audits how visible a website is to AI search engines and RAG systems. Think SEO, but for LLMs. A FastAPI service scrapes the site and a Next.js dashboard shows the results.",
     },
     {
       title: "Fincheck",
@@ -69,7 +69,7 @@ export const en = {
       stack: "Next.js, React, TypeScript, HTML, Tailwind CSS, Python, FastAPI, Gemini API",
       github: "Fincheck",
       site: "Fincheck.app",
-      fullDescription: "A lightweight service that analyzes uploaded transactions and automatically assigns categories to simplify expense tracking. Exposes a clean API for the React.js frontend and supports manual edits, CSV uploads, and summary statistics.",
+      fullDescription: "Upload your transactions as a CSV and each one gets a category automatically. You can correct any of them by hand, and the dashboard summarizes your spending. A FastAPI backend serves the React frontend.",
     },
     {
       title: "BorderMate",
@@ -78,7 +78,7 @@ export const en = {
       stack: "Next.js, React, TypeScript, HTML, Tailwind CSS, APIs",
       github: "BorderMate",
       site: "BorderMate.io",
-      fullDescription: "BorderMate captures spoken input in the browser, transcribes it with the Web Speech API, translates text via LibreTranslate with fallbacks to Lingva and MyMemory, and plays natural-sounding audio using the Web Speech Synthesis API",
+      fullDescription: "Speak, and it transcribes, translates and reads the result aloud in the other language, all in the browser. If one translation service is down, it falls back to the next (LibreTranslate, then Lingva, then MyMemory), so the conversation keeps going.",
     },
     // HIDDEN — must stay commented in lockstep with lib/projects.ts (positional merge).
     // {
@@ -96,7 +96,7 @@ export const en = {
       feature: "Ray Tracing, 3D Rendering, Computer Graphics",
       stack: "C++",
       github: "RayTracingImplementation",
-      fullDescription: "RayTracingImplementation is a C++ project that implements a basic ray tracing algorithm to render 3D scenes with realistic lighting and shadows. It demonstrates fundamental concepts of computer graphics and rendering techniques.",
+      fullDescription: "A ray tracer written from scratch in C++. It renders 3D scenes with realistic lighting and shadows.",
     },
     {
       title: "DancingArmadillo",
@@ -105,7 +105,7 @@ export const en = {
       stack: "JavaScript, HTML, GLSL, Three.js",
       github: "DancingArmadillo",
       site: "DancingArmadillo.io",
-      fullDescription: "DancingArmadillo showcases experimentation with GLSL shaders, creating dynamic and interactive 3D animations using WebGL and Three.js. Press 'p' to start the music. Use 'q', 'w' and 'e' to control effects like a true DJ.",
+      fullDescription: "Custom GLSL shaders drive interactive 3D animation with Three.js. Press P to start the music, then Q, W and E to trigger effects like a DJ.",
     },
     {
       title: "CharacterAnimation",
@@ -114,7 +114,7 @@ export const en = {
       stack: "JavaScript, Three.js, GLSL",
       github: "CharacterAnimation",
       site: "CharacterAnimation.io",
-      fullDescription: "This project is an interactive 3D human model viewer and animator built in a class on computer graphics (IFT3355). It allows users to manipulate a human figure, trigger animations, and toggle the visibility of bones and meshes using keyboard controls. The application is implemented in JavaScript and WebGL, with shaders and assets organized in the workspace.",
+      fullDescription: "Built for my IFT3355 computer graphics class. You can pose and animate a rigged human model, and keyboard controls trigger animations and show or hide the bones and mesh.",
     }
   ]
 };
