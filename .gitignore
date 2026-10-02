@@ -37,3 +37,6 @@ next-env.d.ts
 
 # local claude code notes
 CLAUDE.md
+
+# local MCP servers
+.mcp.json
