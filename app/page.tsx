@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import Header from '@/components/header';
 import Section from '@/components/section';
 import ReturnButton from '@/components/returnButton';
-import ProjectFilter from '@/components/ProjectFilter';
+import ProjectFilter, { type Selection } from '@/components/ProjectFilter';
 import { projects, categories, type Category } from "@/lib/projects";
 import Navigation from "@/components/navigation";
 import { useLanguage } from '@/lib/LanguageContext';
@@ -15,16 +15,18 @@ const counts = Object.fromEntries(
 
 export default function Home() {
   const { t } = useLanguage();
-  const [filter, setFilter] = useState<Category | null>(null);
+  const [filter, setFilter] = useState<Selection>(null);
 
   const visibleProjects = useMemo(
-    () => filter ? projects.filter(p => p.categories.includes(filter)) : projects,
+    () => filter === null ? []
+      : filter === 'all' ? projects
+      : projects.filter(p => p.categories.includes(filter)),
     [filter]
   );
 
   return (
     <main className="w-full bg-black flex flex-col items-center">
-      <Header>
+      <Header bare={filter === null}>
         <ProjectFilter active={filter} counts={counts} total={projects.length} onChange={setFilter} />
       </Header>
 
