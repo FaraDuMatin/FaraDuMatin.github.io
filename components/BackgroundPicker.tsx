@@ -48,7 +48,7 @@ export default function BackgroundPicker({ value, onChange }: { value: string; o
 
     return (
         <div ref={root} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
-            className="fixed bottom-5 right-5 z-50 font-[family-name:var(--font-hud)]">
+            className="fixed bottom-5 right-5 z-50 hidden sm:block font-[family-name:var(--font-hud)]">
             {open && (
                 // pb-3 instead of a margin: no gap, so moving the mouse up to the colors keeps them open.
                 <div className="absolute bottom-full right-0 pb-3 animate-in fade-in-0 slide-in-from-bottom-1 duration-200">

@@ -15,6 +15,7 @@ import { useLanguage } from '@/lib/LanguageContext';
 import { oncePerFrame } from '@/lib/oncePerFrame';
 import { playSound } from '@/lib/sound';
 import SoundToggle from '@/components/SoundToggle';
+import MobileMenu from '@/components/MobileMenu';
 
 // Dive timing — tune here.
 const DIVE = 900;          // ms — push into the card (page swaps at the end, under black)
@@ -208,7 +209,8 @@ export default function Home() {
           : veil === 'back' ? `opacity ${BACK_FADE}ms ease-in`
           : veil === 'lift' ? `opacity ${VEIL_FADE}ms ease-out` : 'none',
       }} />
-      <Header bare onBack={filter !== null ? goBack : undefined}>
+      <Header bare onBack={filter !== null ? goBack : undefined}
+        menu={<MobileMenu {...(filter === null && { background, onBackground: pickBackground })} />}>
         {filter === null && <ProjectFilter active={filter} counts={counts} total={projects.length} onChange={select} />}
       </Header>
 

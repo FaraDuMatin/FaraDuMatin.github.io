@@ -22,7 +22,8 @@ function Underline() {
 
 // bare: HUD style — no frame, centered, HUD font and glow like the islands.
 // onBack: shows the Back button next to the language switch (top right).
-export default function Header({ children, bare = false, onBack }: { children?: ReactNode; bare?: boolean; onBack?: () => void }) {
+// menu: mobile settings button (top right); the language switch is hidden below sm.
+export default function Header({ children, bare = false, onBack, menu }: { children?: ReactNode; bare?: boolean; onBack?: () => void; menu?: ReactNode }) {
   const { t, language } = useLanguage();
   const [resumeGlyphs, scrambleResume] = useScramble(t.header.resume);
 
@@ -38,9 +39,10 @@ export default function Header({ children, bare = false, onBack }: { children?: 
         </h1>
         {bare
           ? (
-            <div className="fixed right-5 top-5 z-50 flex items-center gap-4">
-              <LanguageSwitcher hud />
+            <div className="fixed right-5 top-5 z-50 flex items-center gap-2 sm:gap-4">
+              <LanguageSwitcher hud className={menu ? 'hidden sm:flex' : ''} />
               {onBack && <BackButton onClick={onBack} />}
+              {menu}
             </div>
           )
           : <LanguageSwitcher />}

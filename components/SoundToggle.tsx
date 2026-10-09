@@ -10,6 +10,7 @@ import HudBrackets from './HudBrackets';
 // Bottom-left "Sound: Off / On" toggle (igloo.inc style). Hovering it opens the ambient picker
 // above (like the color picker): numbered loops in HUD brackets. Also wires the page's sounds:
 // hovering anything with data-sound plays "hover", clicking data-sound="ui" plays "click".
+// Hidden below sm (MobileMenu has the toggle there) but stays mounted for those listeners.
 export default function SoundToggle() {
     const on = useSyncExternalStore(subscribeSound, isSoundOn, () => false);
     const { language } = useLanguage();
@@ -43,7 +44,7 @@ export default function SoundToggle() {
     return (
         <div onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}
             onFocus={() => setOpen(true)} onBlur={e => !e.currentTarget.contains(e.relatedTarget) && setOpen(false)}
-            className="fixed bottom-5 left-5 z-50 font-[family-name:var(--font-hud)] text-xs font-semibold uppercase tracking-[0.15em]">
+            className="fixed bottom-5 left-5 z-50 hidden sm:block font-[family-name:var(--font-hud)] text-xs font-semibold uppercase tracking-[0.15em]">
             {open && (
                 // pb-3 instead of a margin: no gap, so moving the mouse up keeps it open.
                 <div className="absolute bottom-full left-0 pb-3 animate-in fade-in-0 slide-in-from-bottom-1 duration-200">
