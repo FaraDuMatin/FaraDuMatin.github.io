@@ -12,7 +12,8 @@ interface ProjectFilterProps {
     active: Selection;
     counts: Record<Category, number>;
     total: number;
-    onChange: (selection: Selection) => void;
+    // from: the clicked island's screen rect, for the zoom transition.
+    onChange: (selection: Selection, from?: DOMRect, label?: string) => void;
 }
 
 // One island per corner on sm+, "All" in the middle.
@@ -39,7 +40,8 @@ export default function ProjectFilter({ active, counts, total, onChange }: Proje
                     const isActive = active === value;
                     return (
                         <Island key={value} label={label} count={count} place={place} frame={frames[value]} big={value === 'all'}
-                            isActive={isActive} onClick={() => onChange(isActive ? null : value)} />
+                            isActive={isActive}
+                            onClick={e => onChange(isActive ? null : value, e.currentTarget.getBoundingClientRect(), label)} />
                     );
                 })}
             </div>
@@ -54,7 +56,7 @@ interface IslandProps {
     frame: IslandFrame;
     big: boolean;
     isActive: boolean;
-    onClick: () => void;
+    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const glow = '[text-shadow:0_0_12px_rgba(255,255,255,0.5)]';
