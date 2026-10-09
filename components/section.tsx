@@ -1,20 +1,9 @@
-import type { CSSProperties } from 'react';
 import { Github, Globe, Play } from 'lucide-react';
-import MagneticPill from './MagneticPill';
+import HudLink from './HudLink';
 import EmblaCarousel from './carousel/EmblaCarousel';
 import ArchitectureModal from './ArchitectureModal';
 import { getTech, readableColor } from '@/lib/techStack';
 import '../components/carousel/embla.css';
-
-function LinkPill({ href, label, icon: Icon, accentColor }: { href: string; label: string; icon: typeof Github; accentColor: string }) {
-    return (
-        <a href={href} target="_blank" rel="noopener noreferrer" style={{ '--accent': accentColor } as CSSProperties}
-            className="group inline-flex items-center gap-2 rounded-lg border border-neutral-800 bg-neutral-950 px-4 py-2 text-sm font-medium text-zinc-300 shadow-sm transition hover:border-[color:var(--accent)] hover:text-white">
-            <Icon className="h-4 w-4" style={{ color: accentColor }} />
-            {label}
-        </a>
-    );
-}
 
 function mix(color: string, percent: number) {
     return `color-mix(in srgb, ${color} ${percent}%, transparent)`;
@@ -77,15 +66,15 @@ interface SectionProps {
 export default function Section({title, description, feature, stack, github, githubLink, site, siteLink, demo, demoLink, fullDescription, root, slideCount, imageExtensions, accentColor, architecture }: SectionProps) {
     const accent = readableColor(accentColor);
     return (
-        <section id={root} style={{ boxShadow: `0 0 4px ${accentColor}, 0px 0px 4px ${accentColor} inset`}}  className="relative w-full bg-black max-w-6xl animate-in fade-in duration-500 p-6 sm:p-12 py-12 sm:py-20 border-x border-b border-gray-800 flex flex-col">
+        <section id={root} style={{ boxShadow: `0 0 4px ${accentColor}, 0px 0px 4px ${accentColor} inset`}}  className="relative w-full bg-black/50 max-w-6xl animate-in fade-in duration-500 p-6 sm:p-12 py-12 sm:py-20 border-x border-b border-gray-800 flex flex-col">
             <h2 style={{ borderLeft: `4px  ${accentColor}` }} className="-ml-6 sm:-ml-12 pl-4 sm:pl-10 text-3xl sm:text-5xl font-semibold text-zinc-400">
                 <span style={{ color: accentColor }} className="font-bold">{title}. </span>
                 <span className="block sm:inline">{description}</span>
             </h2>
-            <div className="mt-6 flex flex-wrap gap-3">
-                {(site && siteLink) && <MagneticPill href={siteLink} label="Site" icon={Globe} accentColor={accentColor} />}
-                {(demo && demoLink) && <MagneticPill href={demoLink} label="Demo" icon={Play} accentColor={accentColor} />}
-                {(github && githubLink) && <LinkPill href={githubLink} label="Github" icon={Github} accentColor={accentColor} />}
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+                {(site && siteLink) && <HudLink href={siteLink} label="Site" icon={Globe} accentColor={accentColor} />}
+                {(demo && demoLink) && <HudLink href={demoLink} label="Demo" icon={Play} accentColor={accentColor} />}
+                {(github && githubLink) && <HudLink href={githubLink} label="Github" icon={Github} accentColor={accentColor} />}
                 {architecture && <ArchitectureModal architecturePath={architecture} accentColor={accentColor} />}
             </div>
             <EmblaCarousel slides={(root && slideCount) ? generateSlidePaths(root, slideCount, imageExtensions) : ["placeholder.png"]} options={{}} />

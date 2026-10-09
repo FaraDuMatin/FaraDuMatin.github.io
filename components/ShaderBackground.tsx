@@ -3,14 +3,19 @@
 import { useEffect, useRef } from 'react';
 
 // Shadertoy MdVXzw (glowing noise band + floating rotating squares), run on plain WebGL.
-// The shader body is unchanged; only the Shadertoy wrapper (iTime, iResolution, main) is added.
+// Added: the Shadertoy wrapper (iTime, iResolution, main), mixed shapes, and an accent tint.
 const FRAGMENT = `
 precision highp float;
 uniform float iTime;
 uniform vec2 iResolution;
+uniform vec3 uAccent; // project accent, normalized to full brightness
+uniform float uMix;   // 0 = base blue everywhere, 1 = accent behind the project panel
+uniform vec2 uPanel;  // panel's left/right edges, 0..1 across the screen
+uniform vec3 uEdge;   // color the project pages fade to at the screen edges
+uniform vec3 uBase;   // home color; fog and shapes are this at 42% / 57% strength
 
-vec3 bgColor = vec3(0.01, 0.16, 0.42);
-vec3 rectColor = vec3(0.01, 0.26, 0.57);
+vec3 bgColor;
+vec3 rectColor;
 
 const float noiseIntensity = 2.8;
 const float noiseDefinition = 0.6;
@@ -90,9 +95,12 @@ float triangle(vec2 p, float r) {
 float shape(vec2 uv, vec2 pos, float size, float blur, float kind) {
     vec2 p = uv - pos;
     float r = (size + .01) / 2.;
-    if (kind < .5) return rectangle(uv, pos, size, size, blur);
-    if (kind < 1.5) return smoothstep(.002, -blur - .002, triangle(p, r * 0.75));
-    if (kind < 2.5) return 1. - smoothstep(r * .12, r * .12 + blur * .5 + .002, abs(length(p) - r * .8));
+    // Outlines like PlayStation symbols: same stroke for square, triangle and ring.
+    // Blur is capped to the shape's size, or small (blurrier) ones fill in their hole.
+    float stroke = r * .12, edge = min(blur * .5, r * .12) + .002;
+    if (kind < .5) return 1. - smoothstep(stroke, stroke + edge, abs(max(abs(p.x), abs(p.y)) - r * .75));
+    if (kind < 1.5) return 1. - smoothstep(stroke, stroke + edge, abs(triangle(p, r * .8)));
+    if (kind < 2.5) return 1. - smoothstep(stroke, stroke + edge, abs(length(p) - r * .8));
     return max(box(p, vec2(r, r * .2), blur * .5), box(p, vec2(r * .2, r), blur * .5));
 }
 
@@ -105,6 +113,16 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
     vec2 uv = fragCoord.xy / iResolution.xy * 2. - 1.;
     uv.x *= iResolution.x/iResolution.y;
+
+    // Project pages (uMix -> 1): accent behind the panel, fading to uEdge toward the screen edges.
+    // Home (uMix = 0): the base blue.
+    float x = fragCoord.x / iResolution.x;
+    float outside = max(uPanel.x - x, x - uPanel.y);
+    float w = 1. - smoothstep(0., max(uPanel.x, .001), outside);
+    vec3 tint = mix(uBase, mix(uEdge, uAccent, w), uMix);
+    bgColor = tint * 0.42;
+    rectColor = tint * 0.57;
+
     vec3 color = bg(uv)*(2.-abs(uv.y*2.));
     float velX = -iTime/8.;
     float velY = iTime/10.;
@@ -130,9 +148,38 @@ void main() { mainImage(gl_FragColor, gl_FragCoord.xy); }
 const VERTEX = `attribute vec2 p; void main() { gl_Position = vec4(p, 0.0, 1.0); }`;
 
 const SCALE = 0.75; // render below CSS resolution; the shader is soft, and this keeps it cheap
+const PANEL_MAX = 1152; // px — the project panels' max-w-6xl
+const EASE = 0.05;      // per-frame step toward a new accent (≈1s to settle)
+const BASE = '#ffffff'; // home fog + shapes: white = shades of gray. Original blue: '#0661ff'
+const EDGE = '#000000'; // project pages fade to this at the screen edges — try '#ffffff' for white
 
-export default function ShaderBackground() {
+function hexRgb(hex: string): [number, number, number] {
+    const n = parseInt(hex.replace('#', ''), 16);
+    return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
+}
+
+// Hex → RGB 0..1, scaled so the brightest channel is 1: keeps the hue, and near-black
+// accents (PLUMB's #1F2933) still read as a color.
+function normalizedRgb(hex: string): [number, number, number] {
+    const n = parseInt(hex.replace('#', ''), 16);
+    const rgb = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+    const max = Math.max(...rgb, 1);
+    return [rgb[0] / max, rgb[1] / max, rgb[2] / max];
+}
+
+// dim: fade the shader down behind the project pages so their text stays readable.
+// accent: the project in view; tints the shader behind its panel. Omit for the base blue.
+// edge: color the project pages fade to at the screen edges (hex).
+export default function ShaderBackground({ dim = false, accent, edge = EDGE }: { dim?: boolean; accent?: string; edge?: string }) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const target = useRef({ color: [0.02, 0.38, 1] as number[], mix: 0 });
+    const redraw = useRef<() => void>(() => {});
+
+    useEffect(() => {
+        if (accent) target.current = { color: normalizedRgb(accent), mix: 1 };
+        else target.current = { ...target.current, mix: 0 };
+        redraw.current();
+    }, [accent]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -162,35 +209,54 @@ export default function ShaderBackground() {
 
         const uTime = gl.getUniformLocation(program, 'iTime');
         const uRes = gl.getUniformLocation(program, 'iResolution');
+        const uAccent = gl.getUniformLocation(program, 'uAccent');
+        const uMix = gl.getUniformLocation(program, 'uMix');
+        const uPanel = gl.getUniformLocation(program, 'uPanel');
+        const uEdge = gl.getUniformLocation(program, 'uEdge');
+        gl.uniform3f(uEdge, ...hexRgb(edge));
+        gl.uniform3f(gl.getUniformLocation(program, 'uBase'), ...hexRgb(BASE));
 
         const resize = () => {
             canvas.width = Math.round(canvas.clientWidth * SCALE);
             canvas.height = Math.round(canvas.clientHeight * SCALE);
             gl.viewport(0, 0, canvas.width, canvas.height);
             gl.uniform2f(uRes, canvas.width, canvas.height);
+            const edge = Math.max(0, (canvas.clientWidth - PANEL_MAX) / 2) / canvas.clientWidth;
+            gl.uniform2f(uPanel, edge, 1 - edge);
         };
         resize();
         window.addEventListener('resize', resize);
 
         const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const start = performance.now();
+        const current = { color: [...target.current.color], mix: target.current.mix };
         let frame = 0;
         const draw = (now: number) => {
+            // Ease toward the target accent; reduced motion snaps to it instead.
+            const step = still ? 1 : EASE;
+            current.color = current.color.map((c, i) => c + (target.current.color[i] - c) * step);
+            current.mix += (target.current.mix - current.mix) * step;
+            gl.uniform3f(uAccent, current.color[0], current.color[1], current.color[2]);
+            gl.uniform1f(uMix, current.mix);
             gl.uniform1f(uTime, still ? 10 : (now - start) / 1000);
             gl.drawArrays(gl.TRIANGLES, 0, 3);
             if (!still) frame = requestAnimationFrame(draw);
         };
         frame = requestAnimationFrame(draw);
+        // Reduced motion draws one frame; redraw it when the accent changes.
+        redraw.current = () => { if (still) frame = requestAnimationFrame(draw); };
 
         return () => {
             cancelAnimationFrame(frame);
+            redraw.current = () => {};
             window.removeEventListener('resize', resize);
             // Free GL objects but keep the context: getContext() hands back the same one on the
             // next mount (React dev runs effects twice), and a lost context renders white.
             gl.deleteBuffer(buffer);
             gl.deleteProgram(program);
         };
-    }, []);
+    }, [edge]);
 
-    return <canvas ref={canvasRef} aria-hidden className="pointer-events-none fixed inset-0 z-0 h-full w-full" />;
+    return <canvas ref={canvasRef} aria-hidden
+        className={`pointer-events-none fixed inset-0 z-0 h-full w-full transition-opacity duration-700 ${dim ? 'opacity-40' : 'opacity-100'}`} />;
 }

@@ -12,7 +12,7 @@ export default function BackButton({ onClick }: { onClick: () => void }) {
 
     return (
         <button type="button" aria-label={label} onClick={onClick} onMouseEnter={scramble} onFocus={scramble}
-            className="group fixed right-5 top-5 z-50 px-7 py-4 font-mono text-base text-zinc-200 outline-none transition-colors hover:text-white">
+            className="group relative px-7 py-4 font-mono text-base text-zinc-200 outline-none transition-colors hover:text-white">
             <HudBrackets />
             <span aria-hidden className="whitespace-pre">
                 {glyphs.map((g, i) => <span key={i} style={{ opacity: g.opacity }}>{g.ch}</span>)}

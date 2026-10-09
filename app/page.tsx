@@ -6,7 +6,6 @@ import Section from '@/components/section';
 import ReturnButton from '@/components/returnButton';
 import ProjectFilter, { type Selection } from '@/components/ProjectFilter';
 import Loader from '@/components/Loader';
-import BackButton from '@/components/BackButton';
 import ShaderBackground from '@/components/ShaderBackground';
 import { projects, categories, type Category } from "@/lib/projects";
 import Navigation from "@/components/navigation";
@@ -57,14 +56,29 @@ export default function Home() {
     [filter]
   );
 
+  // Accent of the project crossing the middle of the screen; tints the shader behind it.
+  const [inView, setInView] = useState<string | undefined>();
+  useEffect(() => {
+    const update = () => {
+      const middle = window.innerHeight / 2;
+      const current = visibleProjects.find(({ root }) => {
+        const rect = document.getElementById(root)?.getBoundingClientRect();
+        return rect && rect.top <= middle && rect.bottom >= middle;
+      });
+      setInView((current ?? visibleProjects[0])?.accentColor);
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    return () => window.removeEventListener('scroll', update);
+  }, [visibleProjects]);
+
   return (
     <main className="w-full bg-black flex flex-col items-center">
       <Loader />
-      {filter === null && <ShaderBackground />}
-      <Header bare={filter === null}>
+      <ShaderBackground dim={filter !== null} accent={filter !== null ? inView : undefined} />
+      <Header bare onBack={filter !== null ? goBack : undefined}>
         {filter === null && <ProjectFilter active={filter} counts={counts} total={projects.length} onChange={select} />}
       </Header>
-      {filter !== null && <BackButton onClick={goBack} />}
 
       {projects.map((project, index) => {
         // Merge with the full, unfiltered index: t.projects is positional.

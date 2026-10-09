@@ -4,13 +4,15 @@ import type { ReactNode } from 'react';
 import { useLanguage } from '@/lib/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
 import HudBrackets from './HudBrackets';
+import BackButton from './BackButton';
 import { useScramble } from '@/lib/useScramble';
 
 const glow = '[text-shadow:0_0_18px_rgba(255,255,255,0.35)]';
 const iconGlow = 'drop-shadow-[0_0_6px_rgba(255,255,255,0.45)] transition-[filter] hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]';
 
-// bare: the home view — no frame, centered, HUD font and glow like the islands.
-export default function Header({ children, bare = false }: { children?: ReactNode; bare?: boolean }) {
+// bare: HUD style — no frame, centered, HUD font and glow like the islands.
+// onBack: shows the Back button next to the language switch (top right).
+export default function Header({ children, bare = false, onBack }: { children?: ReactNode; bare?: boolean; onBack?: () => void }) {
   const { t, language } = useLanguage();
   const [resumeGlyphs, scrambleResume] = useScramble(t.header.resume);
 
@@ -25,7 +27,12 @@ export default function Header({ children, bare = false }: { children?: ReactNod
           <span className="block sm:inline">{t.header.title}</span>
         </h1>
         {bare
-          ? <LanguageSwitcher hud className="fixed right-5 top-5 z-50" />
+          ? (
+            <div className="fixed right-5 top-5 z-50 flex items-center gap-4">
+              <LanguageSwitcher hud />
+              {onBack && <BackButton onClick={onBack} />}
+            </div>
+          )
           : <LanguageSwitcher />}
       </div>
       <div className={`text-zinc-400 text-xl sm:text-2xl flex flex-row gap-4 mt-8 ${bare ? 'justify-center items-center' : ''}`}>
