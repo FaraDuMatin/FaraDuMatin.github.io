@@ -17,7 +17,7 @@ export default function LanguageSwitcher({ hud = false, className = '' }: { hud?
       {options.map(({ value, label, aria }, i) => (
         <span key={value} className="flex items-center gap-1">
           {i > 0 && <span aria-hidden className="text-zinc-600">/</span>}
-          <button onClick={() => setLanguage(value)} aria-label={aria} aria-pressed={language === value}
+          <button onClick={() => setLanguage(value)} aria-label={aria} aria-pressed={language === value} data-sound="ui"
             className={`group relative px-3 py-1.5 transition-colors ${language === value
               ? 'text-white [text-shadow:0_0_12px_rgba(255,255,255,0.5)]'
               : 'text-zinc-500 hover:text-zinc-200'}`}>

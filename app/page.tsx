@@ -12,6 +12,8 @@ import { projects, categories, type Category } from "@/lib/projects";
 import Navigation from "@/components/navigation";
 import { useLanguage } from '@/lib/LanguageContext';
 import { oncePerFrame } from '@/lib/oncePerFrame';
+import { playSound } from '@/lib/sound';
+import SoundToggle from '@/components/SoundToggle';
 
 // Dive timing — tune here.
 const DIVE = 900;          // ms — push into the card (page swaps at the end, under black)
@@ -60,8 +62,12 @@ export default function Home() {
   const select = (s: Selection, from?: DOMRect) => {
     if (s === null) return goBack();
     if (diving.current) return;
-    if (!from || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return open(s);
+    if (!from || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      playSound('click');
+      return open(s);
+    }
     diving.current = true;
+    playSound('dive');
     // The zoomed header overflows the page; hide the scrollbars until the swap.
     document.documentElement.style.overflow = 'hidden';
 
@@ -138,6 +144,7 @@ export default function Home() {
       <Loader />
       <ShaderBackground dim={filter !== null} accent={filter !== null ? inView : undefined} base={background} />
       {filter === null && <BackgroundPicker value={background} onChange={setBackground} />}
+      <SoundToggle />
       {/* Dive veil: goes black at the end of the dive, lifts after the swap. */}
       <div aria-hidden className="pointer-events-none fixed inset-0 z-[80] bg-black" style={{
         opacity: veil === 'in' ? 1 : 0,

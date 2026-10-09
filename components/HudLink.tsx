@@ -9,7 +9,7 @@ import { useScramble } from '@/lib/useScramble';
 export default function HudLink({ href, label, icon: Icon, accentColor }: { href: string; label: string; icon: LucideIcon; accentColor: string }) {
     const [glyphs, scramble] = useScramble(label);
     return (
-        <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+        <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label} data-sound="ui"
             onMouseEnter={scramble} onFocus={scramble}
             className="group relative inline-flex items-center gap-2 px-5 py-2.5 bg-black/30 font-[family-name:var(--font-hud)] text-sm font-semibold uppercase tracking-[0.15em] text-white transition-colors hover:bg-black/40 [text-shadow:0_0_18px_rgba(255,255,255,0.35)]">
             <HudBrackets />

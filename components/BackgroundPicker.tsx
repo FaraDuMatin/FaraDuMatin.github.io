@@ -53,7 +53,7 @@ export default function BackgroundPicker({ value, onChange }: { value: string; o
                         {BACKGROUND_COLORS.map(({ hex, swatch, en, fr }) => {
                             const selected = hex === value;
                             return (
-                                <button key={hex} type="button" role="radio" aria-checked={selected} aria-label={language === 'fr' ? fr : en}
+                                <button key={hex} type="button" role="radio" aria-checked={selected} aria-label={language === 'fr' ? fr : en} data-sound="ui"
                                     onClick={() => { onChange(hex); setPinned(false); setHover(false); }}
                                     className={`group relative grid size-10 place-items-center transition-colors ${selected ? 'text-white' : 'text-zinc-600 hover:text-zinc-200'}`}>
                                     <HudBrackets />
@@ -69,7 +69,7 @@ export default function BackgroundPicker({ value, onChange }: { value: string; o
             <TooltipProvider delayDuration={0}>
                 <Tooltip>
                     <TooltipTrigger asChild>
-                        <button type="button" aria-label={label} aria-expanded={open} aria-pressed={pinned} onClick={() => setPinned(p => !p)}
+                        <button type="button" aria-label={label} aria-expanded={open} aria-pressed={pinned} onClick={() => setPinned(p => !p)} data-sound="ui"
                             className={`group relative p-3 transition-colors ${open ? 'text-white' : 'text-zinc-300 hover:text-white'}`}>
                             <HudBrackets />
                             <Palette aria-hidden className={`h-5 w-5 transition-[filter] ${open

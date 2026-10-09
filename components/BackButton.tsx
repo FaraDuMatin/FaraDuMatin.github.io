@@ -11,7 +11,7 @@ export default function BackButton({ onClick }: { onClick: () => void }) {
     const [glyphs, scramble] = useScramble(label);
 
     return (
-        <button type="button" aria-label={label} onClick={onClick} onMouseEnter={scramble} onFocus={scramble}
+        <button type="button" aria-label={label} onClick={onClick} data-sound="ui" onMouseEnter={scramble} onFocus={scramble}
             className="group relative w-32 py-4 text-center font-mono text-base text-zinc-200 outline-none transition-colors hover:text-white">
             <HudBrackets />
             <span aria-hidden className="whitespace-pre">

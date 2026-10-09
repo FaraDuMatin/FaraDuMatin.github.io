@@ -72,6 +72,7 @@ export default function Header({ children, bare = false, onBack }: { children?: 
             href={language === 'en' ? '/Resume_Farah.pdf' : '/CV_Farah.pdf'}
             target="_blank"
             rel="noopener noreferrer"
+            data-sound="ui"
             onMouseEnter={scrambleResume}
             onFocus={scrambleResume}
             className={`group relative ml-2 px-6 py-2.5 bg-black/30 text-white text-sm font-semibold uppercase tracking-[0.15em] transition-colors hover:bg-black/40 ${glow}`}

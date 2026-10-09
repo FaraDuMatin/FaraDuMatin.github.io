@@ -66,7 +66,7 @@ function Island({ label, count, place, frame: { viewBox, Frame, clip }, big, isA
     const size = big ? 'text-2xl sm:text-3xl tracking-[0.2em]'
         : label.length > 6 ? 'text-sm sm:text-base tracking-[0.08em]' : 'text-xl sm:text-2xl tracking-[0.15em]';
     return (
-        <button type="button" aria-pressed={isActive} aria-label={label} onClick={onClick}
+        <button type="button" aria-pressed={isActive} aria-label={label} onClick={onClick} data-sound="hover"
             onMouseEnter={scramble} onFocus={scramble}
             className={`${place} group relative flex flex-col items-center justify-center gap-1 font-[family-name:var(--font-hud)] transition-colors ${isActive
                 ? 'text-white'
