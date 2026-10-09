@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useLanguage } from '@/lib/LanguageContext';
 
 // Matched frame by frame to igloo.inc's hover: letters appear fast left to right,
 // then lock in one by one, slower. ~400ms for 9 chars.
@@ -18,14 +19,11 @@ const settled = (text: string): Glyph[] => Array.from(text, ch => ({ ch, opacity
 export function useScramble(text: string) {
     const [glyphs, setGlyphs] = useState(() => settled(text));
     const frame = useRef(0);
-
-    useEffect(() => {
-        setGlyphs(settled(text));
-        return () => cancelAnimationFrame(frame.current);
-    }, [text]);
+    const { language } = useLanguage();
+    const lastLanguage = useRef(language);
 
     const play = useCallback(() => {
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return setGlyphs(settled(text));
         cancelAnimationFrame(frame.current);
         const chars = Array.from(text);
         const end = RESOLVE + (chars.length - 1) * RESOLVE_STAGGER;
@@ -50,8 +48,17 @@ export function useScramble(text: string) {
             }));
             frame.current = requestAnimationFrame(tick);
         };
-        frame.current = requestAnimationFrame(tick);
+        tick(start); // draw the first (blank) frame now, so the old text never flashes in
     }, [text]);
+
+    // New text: show it as-is — unless the language just switched, then scramble it in.
+    useEffect(() => {
+        const switched = lastLanguage.current !== language;
+        lastLanguage.current = language;
+        if (switched) play();
+        else setGlyphs(settled(text));
+        return () => cancelAnimationFrame(frame.current);
+    }, [text, language, play]);
 
     return [glyphs, play] as const;
 }

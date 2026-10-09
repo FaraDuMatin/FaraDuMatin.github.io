@@ -7,6 +7,7 @@ import ReturnButton from '@/components/returnButton';
 import ProjectFilter, { type Selection } from '@/components/ProjectFilter';
 import Loader from '@/components/Loader';
 import BackButton from '@/components/BackButton';
+import ShaderBackground from '@/components/ShaderBackground';
 import { projects, categories, type Category } from "@/lib/projects";
 import Navigation from "@/components/navigation";
 import { useLanguage } from '@/lib/LanguageContext';
@@ -59,6 +60,7 @@ export default function Home() {
   return (
     <main className="w-full bg-black flex flex-col items-center">
       <Loader />
+      {filter === null && <ShaderBackground />}
       <Header bare={filter === null}>
         {filter === null && <ProjectFilter active={filter} counts={counts} total={projects.length} onChange={select} />}
       </Header>

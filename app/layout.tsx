@@ -1,8 +1,12 @@
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
+import { Chakra_Petch } from "next/font/google";
 import { LanguageProvider } from "@/lib/LanguageContext";
 import "./globals.css";
+
+// HUD font for the islands (used via font-[family-name:var(--font-hud)]).
+const hud = Chakra_Petch({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-hud" });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://faradumatin.github.io/'),
@@ -52,7 +56,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={hud.variable}>
       <head>
         <link rel="preconnect" href="https://rsms.me/" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />

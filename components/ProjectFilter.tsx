@@ -3,7 +3,7 @@
 import { categories, type Category } from '@/lib/projects';
 import { useLanguage } from '@/lib/LanguageContext';
 import { useScramble } from '@/lib/useScramble';
-import { frames } from '@/components/IslandFrames';
+import { frames, type IslandFrame } from '@/components/IslandFrames';
 
 // null = no island picked yet, so no projects shown.
 export type Selection = Category | 'all' | null;
@@ -38,8 +38,8 @@ export default function ProjectFilter({ active, counts, total, onChange }: Proje
                 {options.map(({ value, label, count, place }) => {
                     const isActive = active === value;
                     return (
-                        <Island key={value} label={label} count={count} place={place} frame={frames[value]} isActive={isActive}
-                            onClick={() => onChange(isActive ? null : value)} />
+                        <Island key={value} label={label} count={count} place={place} frame={frames[value]} big={value === 'all'}
+                            isActive={isActive} onClick={() => onChange(isActive ? null : value)} />
                     );
                 })}
             </div>
@@ -51,27 +51,37 @@ interface IslandProps {
     label: string;
     count: number;
     place: string;
-    frame: (typeof frames)[keyof typeof frames];
+    frame: IslandFrame;
+    big: boolean;
     isActive: boolean;
     onClick: () => void;
 }
 
-function Island({ label, count, place, frame: { viewBox, Frame }, isActive, onClick }: IslandProps) {
+const glow = '[text-shadow:0_0_12px_rgba(255,255,255,0.5)]';
+
+function Island({ label, count, place, frame: { viewBox, Frame, clip }, big, isActive, onClick }: IslandProps) {
     const [glyphs, scramble] = useScramble(label);
+    const size = big ? 'text-2xl sm:text-3xl tracking-[0.2em]'
+        : label.length > 6 ? 'text-sm sm:text-base tracking-[0.08em]' : 'text-xl sm:text-2xl tracking-[0.15em]';
     return (
         <button type="button" aria-pressed={isActive} aria-label={label} onClick={onClick}
             onMouseEnter={scramble} onFocus={scramble}
-            className={`${place} group relative flex flex-col items-center justify-center gap-1 transition-colors ${isActive
+            className={`${place} group relative flex flex-col items-center justify-center gap-1 font-[family-name:var(--font-hud)] transition-colors ${isActive
                 ? 'text-white'
-                : 'text-zinc-500 hover:text-zinc-200'}`}>
+                : 'text-zinc-300 hover:text-white'}`}>
+            {/* Frosted panel so the label reads over the shader. */}
+            <span aria-hidden style={{ clipPath: clip }}
+                className="absolute inset-0 bg-black/25 backdrop-blur-[2px] transition-colors group-hover:bg-black/35" />
             <svg viewBox={viewBox} fill="none" stroke="currentColor" aria-hidden
-                className={`absolute inset-0 h-full w-full overflow-visible ${isActive ? 'drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]' : ''}`}>
+                className={`absolute inset-0 h-full w-full overflow-visible transition-[filter] ${isActive
+                    ? 'drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]'
+                    : 'drop-shadow-[0_0_6px_rgba(255,255,255,0.35)] group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.6)]'}`}>
                 <Frame />
             </svg>
-            <span aria-hidden className={`relative font-mono uppercase whitespace-pre ${label.length > 6 ? 'text-xs tracking-[0.15em]' : 'text-sm sm:text-base tracking-[0.2em]'} ${isActive ? 'text-white' : 'text-zinc-300 group-hover:text-white'}`}>
+            <span aria-hidden className={`relative font-semibold uppercase whitespace-pre ${size} ${glow} text-white`}>
                 {glyphs.map((g, i) => <span key={i} style={{ opacity: g.opacity }}>{g.ch}</span>)}
             </span>
-            <span className="relative font-mono text-xs tabular-nums text-zinc-500">{count}</span>
+            <span className={`relative font-medium tabular-nums ${big ? 'text-base' : 'text-sm'} text-zinc-300/80`}>{count}</span>
         </button>
     );
 }
