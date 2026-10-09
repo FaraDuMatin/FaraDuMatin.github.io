@@ -18,6 +18,7 @@ export default function NavDot({ root, title, accentColor, isActive, scrollToSec
                 <TooltipTrigger
                     className="group flex items-center gap-2 p-1.5 font-[family-name:var(--font-hud)]"
                     onClick={() => scrollToSection(root)}
+                    data-sound="ui"
                 >
                     <span className={`w-5 text-left text-[11px] font-semibold tabular-nums transition-colors ${isActive ? 'text-white' : 'text-zinc-600 group-hover:text-zinc-300'}`}>
                         {String(index).padStart(2, '0')}

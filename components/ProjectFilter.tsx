@@ -39,7 +39,7 @@ export default function ProjectFilter({ active, counts, total, onChange }: Proje
                 {options.map(({ value, label, count, place }) => {
                     const isActive = active === value;
                     return (
-                        <Island key={value} label={label} count={count} place={place} frame={frames[value]} big={value === 'all'}
+                        <Island key={value} value={value} label={label} count={count} place={place} frame={frames[value]} big={value === 'all'}
                             isActive={isActive}
                             onClick={e => onChange(isActive ? null : value, e.currentTarget.getBoundingClientRect(), label)} />
                     );
@@ -50,6 +50,7 @@ export default function ProjectFilter({ active, counts, total, onChange }: Proje
 }
 
 interface IslandProps {
+    value: string;
     label: string;
     count: number;
     place: string;
@@ -61,12 +62,12 @@ interface IslandProps {
 
 const glow = '[text-shadow:0_0_12px_rgba(255,255,255,0.5)]';
 
-function Island({ label, count, place, frame: { viewBox, Frame, clip }, big, isActive, onClick }: IslandProps) {
+function Island({ value, label, count, place, frame: { viewBox, Frame, clip }, big, isActive, onClick }: IslandProps) {
     const [glyphs, scramble] = useScramble(label);
     const size = big ? 'text-2xl sm:text-3xl tracking-[0.2em]'
         : label.length > 6 ? 'text-sm sm:text-base tracking-[0.08em]' : 'text-xl sm:text-2xl tracking-[0.15em]';
     return (
-        <button type="button" aria-pressed={isActive} aria-label={label} onClick={onClick} data-sound="hover"
+        <button type="button" aria-pressed={isActive} aria-label={label} onClick={onClick} data-sound="hover" data-island={value}
             onMouseEnter={scramble} onFocus={scramble}
             className={`${place} group relative flex flex-col items-center justify-center gap-1 font-[family-name:var(--font-hud)] transition-colors ${isActive
                 ? 'text-white'

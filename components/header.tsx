@@ -1,14 +1,24 @@
 'use client';
 
 import type { ReactNode } from 'react';
+import { FileUser } from 'lucide-react';
 import { useLanguage } from '@/lib/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
-import HudBrackets from './HudBrackets';
-import BackButton from './BackButton';
 import { useScramble } from '@/lib/useScramble';
+import BackButton from './BackButton';
 
 const glow = '[text-shadow:0_0_18px_rgba(255,255,255,0.35)]';
+const links = [
+  { href: 'mailto:mohameffarah1@gmail.com', icon: '/icons/Gmail_24.svg', label: 'Email' },
+  { href: 'https://www.linkedin.com/in/farah-mohamed-1411a0264/', icon: '/icons/LinkedIn_24.svg', label: 'LinkedIn' },
+  { href: 'https://github.com/FaraDuMatin/', icon: '/icons/mark-github-24.svg', label: 'GitHub' },
+];
 const iconGlow = 'drop-shadow-[0_0_6px_rgba(255,255,255,0.45)] transition-[filter] hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]';
+
+// HUD: a thin line under each header link; lights up and widens on hover. Put in a `group relative`.
+function Underline() {
+  return <span aria-hidden className="absolute bottom-0 left-1/2 h-[1.5px] w-full -translate-x-1/2 scale-x-75 bg-white/40 transition-[transform,background-color,box-shadow] duration-200 group-hover:scale-x-125 group-hover:bg-white group-hover:shadow-[0_0_8px_rgba(255,255,255,0.8)]" />;
+}
 
 // bare: HUD style — no frame, centered, HUD font and glow like the islands.
 // onBack: shows the Back button next to the language switch (top right).
@@ -36,37 +46,14 @@ export default function Header({ children, bare = false, onBack }: { children?: 
           : <LanguageSwitcher />}
       </div>
       <div className={`text-zinc-400 text-xl sm:text-2xl flex flex-row gap-4 mt-8 ${bare ? 'justify-center items-center' : ''}`}>
-        <a href="mailto:mohameffarah1@gmail.com">
-          <img
-            src="/icons/Gmail_24.svg"
-            alt="Email Icon"
-            className={`inline w-6 h-6 mr-2 mb-1 ${bare ? iconGlow : ''}`}
-          />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/farah-mohamed-1411a0264/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-        >
-          <img
-            src="/icons/LinkedIn_24.svg"
-            alt="LinkedIn Icon"
-            className={`inline w-6 h-6 mr-2 mb-1 ${bare ? iconGlow : ''}`}
-          />
-        </a>
-        <a
-          href="https://github.com/FaraDuMatin/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-        >
-          <img
-            src="/icons/mark-github-24.svg"
-            alt="GitHub Icon"
-            className={`inline w-6 h-6 mr-2 mb-1 ${bare ? iconGlow : ''}`}
-          />
-        </a>
+        {links.map(({ href, icon, label }) => (
+          <a key={label} href={href} aria-label={label}
+            {...(href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
+            {...(bare && { 'data-sound': 'ui', className: 'group relative px-1 pb-2.5' })}>
+            <img src={icon} alt="" className={`w-6 h-6 ${bare ? `block ${iconGlow}` : 'inline mr-2 mb-1'}`} />
+            {bare && <Underline />}
+          </a>
+        ))}
         {bare ? (
           <a
             href={language === 'en' ? '/Resume_Farah.pdf' : '/CV_Farah.pdf'}
@@ -75,13 +62,14 @@ export default function Header({ children, bare = false, onBack }: { children?: 
             data-sound="ui"
             onMouseEnter={scrambleResume}
             onFocus={scrambleResume}
-            className={`group relative ml-2 px-6 py-2.5 bg-black/30 text-white text-sm font-semibold uppercase tracking-[0.15em] transition-colors hover:bg-black/40 ${glow}`}
-            aria-label="Download CV"
+            className={`group relative flex items-center gap-2 px-1 pb-2.5 text-white text-xs font-semibold uppercase tracking-[0.15em] ${glow}`}
+            aria-label={t.header.resume}
           >
-            <HudBrackets />
+            <FileUser aria-hidden className={`block w-6 h-6 ${iconGlow}`} />
             <span aria-hidden className="whitespace-pre">
               {resumeGlyphs.map((g, i) => <span key={i} style={{ opacity: g.opacity }}>{g.ch}</span>)}
             </span>
+            <Underline />
           </a>
         ) : (
           <a

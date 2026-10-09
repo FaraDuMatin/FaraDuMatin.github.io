@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Palette } from 'lucide-react';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useLanguage } from '@/lib/LanguageContext';
+import { useScramble } from '@/lib/useScramble';
 import HudBrackets from './HudBrackets';
 
 // Home-only palette (bottom right). Hover shows the colors; click pins them open until a
@@ -32,6 +32,9 @@ export default function BackgroundPicker({ value, onChange }: { value: string; o
     const root = useRef<HTMLDivElement>(null);
     const label = language === 'fr' ? 'Couleur du fond' : 'Background color';
     const open = hover || pinned;
+    // "Color: ◆" in the current swatch, mirroring the "Sound: On" toggle.
+    const [glyphs, scramble] = useScramble(language === 'fr' ? 'Couleur :' : 'Color:');
+    const current = BACKGROUND_COLORS.find(c => c.hex === value)?.swatch ?? BACKGROUND_COLORS[0].swatch;
 
     // Unpin on outside click or Escape.
     useEffect(() => {
@@ -66,20 +69,18 @@ export default function BackgroundPicker({ value, onChange }: { value: string; o
                 </div>
             )}
 
-            <TooltipProvider delayDuration={0}>
-                <Tooltip>
-                    <TooltipTrigger asChild>
-                        <button type="button" aria-label={label} aria-expanded={open} aria-pressed={pinned} onClick={() => setPinned(p => !p)} data-sound="ui"
-                            className={`group relative p-3 transition-colors ${open ? 'text-white' : 'text-zinc-300 hover:text-white'}`}>
-                            <HudBrackets />
-                            <Palette aria-hidden className={`h-5 w-5 transition-[filter] ${open
-                                ? 'drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]'
-                                : 'drop-shadow-[0_0_6px_rgba(255,255,255,0.35)]'}`} />
-                        </button>
-                    </TooltipTrigger>
-                    {!pinned && <TooltipContent side="left">{label}</TooltipContent>}
-                </Tooltip>
-            </TooltipProvider>
+            <button type="button" aria-label={label} aria-expanded={open} aria-pressed={pinned} onClick={() => setPinned(p => !p)} data-sound="ui"
+                onMouseEnter={scramble} onFocus={scramble}
+                className={`group relative flex items-center gap-2.5 px-4 py-3 text-xs font-semibold uppercase tracking-[0.15em] transition-colors ${open ? 'text-white' : 'text-zinc-300 hover:text-white'}`}>
+                <HudBrackets />
+                <Palette aria-hidden className={`h-4 w-4 transition-[filter] ${open
+                    ? 'drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]'
+                    : 'drop-shadow-[0_0_6px_rgba(255,255,255,0.35)]'}`} />
+                <span aria-hidden className="whitespace-pre">
+                    {glyphs.map((g, i) => <span key={i} style={{ opacity: g.opacity }}>{g.ch}</span>)}
+                </span>
+                <span aria-hidden style={{ backgroundColor: current, boxShadow: glow(current, 10) }} className="mx-0.5 size-3 rotate-45" />
+            </button>
         </div>
     );
 }
