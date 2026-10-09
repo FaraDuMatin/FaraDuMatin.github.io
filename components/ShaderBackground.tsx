@@ -70,6 +70,32 @@ float rectangle(vec2 uv, vec2 pos, float width, float height, float blur) {
     return pos.x * pos.y;
 }
 
+// Mixed shapes instead of only squares. kind: 0 = square, 1 = triangle shard,
+// 2 = thin ring, 3 = plus marker. Each particle gets one, in turn.
+
+float box(vec2 p, vec2 halfSize, float blur) {
+    vec2 d = smoothstep(0., blur + .002, halfSize - abs(p));
+    return d.x * d.y;
+}
+
+float triangle(vec2 p, float r) {
+    const float k = 1.7320508; // sqrt(3)
+    p.x = abs(p.x) - r;
+    p.y = p.y + r / k;
+    if (p.x + k * p.y > 0.) p = vec2(p.x - k * p.y, -k * p.x - p.y) / 2.;
+    p.x -= clamp(p.x, -2. * r, 0.);
+    return -length(p) * sign(p.y); // < 0 inside
+}
+
+float shape(vec2 uv, vec2 pos, float size, float blur, float kind) {
+    vec2 p = uv - pos;
+    float r = (size + .01) / 2.;
+    if (kind < .5) return rectangle(uv, pos, size, size, blur);
+    if (kind < 1.5) return smoothstep(.002, -blur - .002, triangle(p, r * 0.75));
+    if (kind < 2.5) return 1. - smoothstep(r * .12, r * .12 + blur * .5 + .002, abs(length(p) - r * .8));
+    return max(box(p, vec2(r, r * .2), blur * .5), box(p, vec2(r * .2, r), blur * .5));
+}
+
 mat2 rotate2d(float _angle){
     return mat2(cos(_angle),-sin(_angle),
                 sin(_angle),cos(_angle));
@@ -92,7 +118,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
         vec2 uvRot = uv - pos.xy + pos.z/2.;
         uvRot = rotate2d( i+iTime/2. ) * uvRot;
         uvRot += pos.xy+pos.z/2.;
-        float rect = rectangle(uvRot, pos.xy, pos.z, pos.z, (maxSize+minSize-pos.z)/2.);
+        float rect = shape(uvRot, pos.xy, pos.z, (maxSize+minSize-pos.z)/2., mod(i, 4.));
         color += rectColor * rect * pos.z/maxSize;
     }
     fragColor = vec4(color, 1.0);
