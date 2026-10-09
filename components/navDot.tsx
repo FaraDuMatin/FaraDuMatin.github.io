@@ -7,20 +7,26 @@ interface NavDotProps {
     isActive: boolean;
     scrollToSection: (id: string) => void;
     showTooltip?: boolean;
+    index: number;
 }
 
-export default function NavDot({ root, title, accentColor, isActive, scrollToSection, showTooltip }: NavDotProps) {
+// HUD tick: index number + a bar that stretches and glows in the accent color when active.
+export default function NavDot({ root, title, accentColor, isActive, scrollToSection, showTooltip, index }: NavDotProps) {
     return (
         <TooltipProvider delayDuration={0}>
             <Tooltip open={showTooltip && (isActive || undefined)} onOpenChange={(open) => !isActive && open}>
                 <TooltipTrigger
-                    className="group p-2"
+                    className="group flex items-center gap-2 p-1.5 font-[family-name:var(--font-hud)]"
                     onClick={() => scrollToSection(root)}
                 >
-                    <div
-                        className={`w-4 h-4 rounded-full transition-transform duration-300 group-hover:scale-125 group-hover:brightness-125 cursor-pointer ${isActive && "scale-125"}`}
+                    <span className={`w-5 text-left text-[11px] font-semibold tabular-nums transition-colors ${isActive ? 'text-white' : 'text-zinc-600 group-hover:text-zinc-300'}`}>
+                        {String(index).padStart(2, '0')}
+                    </span>
+                    <span
+                        className={`h-[2px] transition-all duration-300 ${isActive ? 'w-8' : 'w-3 group-hover:w-5'}`}
                         style={{
-                            backgroundColor: isActive ? accentColor : "#3F3F47"
+                            backgroundColor: isActive ? accentColor : '#52525b',
+                            boxShadow: isActive ? `0 0 8px ${accentColor}` : undefined,
                         }}
                     />
                 </TooltipTrigger>

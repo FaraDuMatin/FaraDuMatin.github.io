@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import NavDot from "@/components/navDot";
+import { oncePerFrame } from "@/lib/oncePerFrame";
 
 interface NavigationProps {
     projects: { root: string; title: string, accentColor: string, altTooltip?: string }[];
@@ -36,14 +37,16 @@ export default function Navigation({ projects }: NavigationProps) {
             setShowTooltip(window.innerWidth > 1460);
         };
 
-        window.addEventListener("scroll", handleScroll);
+        const onScroll = oncePerFrame(handleScroll);
+        window.addEventListener("scroll", onScroll, { passive: true });
         window.addEventListener("resize", handleResize);
 
         handleScroll();
         handleResize();
 
         return () => {
-            window.removeEventListener("scroll", handleScroll);
+            onScroll.cancel();
+            window.removeEventListener("scroll", onScroll);
             window.removeEventListener("resize", handleResize);
         };
     }, [projects]);
@@ -60,9 +63,10 @@ export default function Navigation({ projects }: NavigationProps) {
         <div
             className={`fixed left-5 top-1/2 transform -translate-y-1/2 flex flex-col gap-1 z-50 transition-opacity duration-200  ${isVisible ? 'block' : 'hidden'}`}
         >
-            {isVisible && projects.map(({ root, title, accentColor, altTooltip }) => (
+            {isVisible && projects.map(({ root, title, accentColor, altTooltip }, i) => (
                 <NavDot
                     key={root}
+                    index={i + 1}
                     root={root}
                     title={altTooltip || title}
                     accentColor={accentColor}

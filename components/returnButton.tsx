@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { oncePerFrame } from '@/lib/oncePerFrame';
 
 export default function ReturnButton() {
 
@@ -13,14 +14,16 @@ export default function ReturnButton() {
             setScrolledDown(window.scrollY > 100);
         };
 
-        window.addEventListener('scroll', handleDocumentChange);
-        window.addEventListener('resize', handleDocumentChange);
+        const onChange = oncePerFrame(handleDocumentChange);
+        window.addEventListener('scroll', onChange, { passive: true });
+        window.addEventListener('resize', onChange);
 
         handleDocumentChange();
 
         return () => {
-            window.removeEventListener('scroll', handleDocumentChange);
-            window.removeEventListener('resize', handleDocumentChange);
+            onChange.cancel();
+            window.removeEventListener('scroll', onChange);
+            window.removeEventListener('resize', onChange);
         };
     }, []);
 

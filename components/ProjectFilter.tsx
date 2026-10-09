@@ -71,7 +71,7 @@ function Island({ label, count, place, frame: { viewBox, Frame, clip }, big, isA
                 : 'text-zinc-300 hover:text-white'}`}>
             {/* Frosted panel so the label reads over the shader. */}
             <span aria-hidden style={{ clipPath: clip }}
-                className="absolute inset-0 bg-black/25 backdrop-blur-[2px] transition-colors group-hover:bg-black/35" />
+                className="absolute inset-0 bg-black/30 transition-colors group-hover:bg-black/40" />
             <svg viewBox={viewBox} fill="none" stroke="currentColor" aria-hidden
                 className={`absolute inset-0 h-full w-full overflow-visible transition-[filter] ${isActive
                     ? 'drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]'

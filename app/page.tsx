@@ -7,9 +7,11 @@ import ReturnButton from '@/components/returnButton';
 import ProjectFilter, { type Selection } from '@/components/ProjectFilter';
 import Loader from '@/components/Loader';
 import ShaderBackground from '@/components/ShaderBackground';
+import BackgroundPicker, { BACKGROUND_COLORS } from '@/components/BackgroundPicker';
 import { projects, categories, type Category } from "@/lib/projects";
 import Navigation from "@/components/navigation";
 import { useLanguage } from '@/lib/LanguageContext';
+import { oncePerFrame } from '@/lib/oncePerFrame';
 
 const counts = Object.fromEntries(
   categories.map(c => [c, projects.filter(p => p.categories.includes(c)).length])
@@ -24,6 +26,7 @@ const fromHash = (hash: string): Selection =>
 export default function Home() {
   const { t } = useLanguage();
   const [filter, setFilter] = useState<Selection>(null);
+  const [background, setBackground] = useState(BACKGROUND_COLORS[0].hex);
   const pushed = useRef(0); // hash entries this page added, so Back never leaves the site
 
   useEffect(() => {
@@ -68,14 +71,16 @@ export default function Home() {
       setInView((current ?? visibleProjects[0])?.accentColor);
     };
     update();
-    window.addEventListener('scroll', update, { passive: true });
-    return () => window.removeEventListener('scroll', update);
+    const onScroll = oncePerFrame(update);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => { onScroll.cancel(); window.removeEventListener('scroll', onScroll); };
   }, [visibleProjects]);
 
   return (
     <main className="w-full bg-black flex flex-col items-center">
       <Loader />
-      <ShaderBackground dim={filter !== null} accent={filter !== null ? inView : undefined} />
+      <ShaderBackground dim={filter !== null} accent={filter !== null ? inView : undefined} base={background} />
+      {filter === null && <BackgroundPicker value={background} onChange={setBackground} />}
       <Header bare onBack={filter !== null ? goBack : undefined}>
         {filter === null && <ProjectFilter active={filter} counts={counts} total={projects.length} onChange={select} />}
       </Header>

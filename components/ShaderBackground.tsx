@@ -148,8 +148,10 @@ void main() { mainImage(gl_FragColor, gl_FragCoord.xy); }
 const VERTEX = `attribute vec2 p; void main() { gl_Position = vec4(p, 0.0, 1.0); }`;
 
 const SCALE = 0.75; // render below CSS resolution; the shader is soft, and this keeps it cheap
+const DIM_SCALE = 0.5; // behind project pages it's at 40% under the panels: half res is plenty
+const DIM_FPS = 30;    // and half the frame rate
 const PANEL_MAX = 1152; // px — the project panels' max-w-6xl
-const EASE = 0.05;      // per-frame step toward a new accent (≈1s to settle)
+const EASE = 0.05;      // step toward a new accent per 60fps frame (≈1s to settle)
 const BASE = '#ffffff'; // home fog + shapes: white = shades of gray. Original blue: '#0661ff'
 const EDGE = '#000000'; // project pages fade to this at the screen edges — try '#ffffff' for white
 
@@ -170,16 +172,29 @@ function normalizedRgb(hex: string): [number, number, number] {
 // dim: fade the shader down behind the project pages so their text stays readable.
 // accent: the project in view; tints the shader behind its panel. Omit for the base blue.
 // edge: color the project pages fade to at the screen edges (hex).
-export default function ShaderBackground({ dim = false, accent, edge = EDGE }: { dim?: boolean; accent?: string; edge?: string }) {
+// base: home color (hex); changes fade in.
+export default function ShaderBackground({ dim = false, accent, edge = EDGE, base = BASE }: { dim?: boolean; accent?: string; edge?: string; base?: string }) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const target = useRef({ color: [0.02, 0.38, 1] as number[], mix: 0 });
+    const target = useRef({ color: [0.02, 0.38, 1] as number[], mix: 0, base: hexRgb(base) as number[] });
     const redraw = useRef<() => void>(() => {});
+    const dimRef = useRef(dim);
+    const resizeRef = useRef<() => void>(() => {});
 
     useEffect(() => {
-        if (accent) target.current = { color: normalizedRgb(accent), mix: 1 };
+        if (accent) target.current = { ...target.current, color: normalizedRgb(accent), mix: 1 };
         else target.current = { ...target.current, mix: 0 };
         redraw.current();
     }, [accent]);
+
+    useEffect(() => {
+        target.current = { ...target.current, base: hexRgb(base) };
+        redraw.current();
+    }, [base]);
+
+    useEffect(() => {
+        dimRef.current = dim;
+        resizeRef.current(); // switch render resolution
+    }, [dim]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -214,29 +229,41 @@ export default function ShaderBackground({ dim = false, accent, edge = EDGE }: {
         const uPanel = gl.getUniformLocation(program, 'uPanel');
         const uEdge = gl.getUniformLocation(program, 'uEdge');
         gl.uniform3f(uEdge, ...hexRgb(edge));
-        gl.uniform3f(gl.getUniformLocation(program, 'uBase'), ...hexRgb(BASE));
+        const uBase = gl.getUniformLocation(program, 'uBase');
 
         const resize = () => {
-            canvas.width = Math.round(canvas.clientWidth * SCALE);
-            canvas.height = Math.round(canvas.clientHeight * SCALE);
+            const scale = dimRef.current ? DIM_SCALE : SCALE;
+            canvas.width = Math.round(canvas.clientWidth * scale);
+            canvas.height = Math.round(canvas.clientHeight * scale);
             gl.viewport(0, 0, canvas.width, canvas.height);
             gl.uniform2f(uRes, canvas.width, canvas.height);
             const edge = Math.max(0, (canvas.clientWidth - PANEL_MAX) / 2) / canvas.clientWidth;
             gl.uniform2f(uPanel, edge, 1 - edge);
         };
         resize();
+        resizeRef.current = resize;
         window.addEventListener('resize', resize);
 
         const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const start = performance.now();
-        const current = { color: [...target.current.color], mix: target.current.mix };
+        const current = { color: [...target.current.color], mix: target.current.mix, base: [...target.current.base] };
         let frame = 0;
+        let last = start;
         const draw = (now: number) => {
-            // Ease toward the target accent; reduced motion snaps to it instead.
-            const step = still ? 1 : EASE;
+            // Behind project pages, skip frames to hold ~30fps.
+            if (!still && dimRef.current && now - last < 1000 / DIM_FPS - 2) {
+                frame = requestAnimationFrame(draw);
+                return;
+            }
+            // Ease toward the target accent, by elapsed time so the fade lasts the same at
+            // any frame rate; reduced motion snaps to it instead.
+            const step = still ? 1 : 1 - Math.pow(1 - EASE, (now - last) / (1000 / 60));
+            last = now;
             current.color = current.color.map((c, i) => c + (target.current.color[i] - c) * step);
             current.mix += (target.current.mix - current.mix) * step;
+            current.base = current.base.map((c, i) => c + (target.current.base[i] - c) * step);
             gl.uniform3f(uAccent, current.color[0], current.color[1], current.color[2]);
+            gl.uniform3f(uBase, current.base[0], current.base[1], current.base[2]);
             gl.uniform1f(uMix, current.mix);
             gl.uniform1f(uTime, still ? 10 : (now - start) / 1000);
             gl.drawArrays(gl.TRIANGLES, 0, 3);
@@ -249,6 +276,7 @@ export default function ShaderBackground({ dim = false, accent, edge = EDGE }: {
         return () => {
             cancelAnimationFrame(frame);
             redraw.current = () => {};
+            resizeRef.current = () => {};
             window.removeEventListener('resize', resize);
             // Free GL objects but keep the context: getContext() hands back the same one on the
             // next mount (React dev runs effects twice), and a lost context renders white.

@@ -11,7 +11,7 @@ export default function HudLink({ href, label, icon: Icon, accentColor }: { href
     return (
         <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
             onMouseEnter={scramble} onFocus={scramble}
-            className="group relative inline-flex items-center gap-2 px-5 py-2.5 bg-black/25 backdrop-blur-[2px] font-[family-name:var(--font-hud)] text-sm font-semibold uppercase tracking-[0.15em] text-white transition-colors hover:bg-black/40 [text-shadow:0_0_18px_rgba(255,255,255,0.35)]">
+            className="group relative inline-flex items-center gap-2 px-5 py-2.5 bg-black/30 font-[family-name:var(--font-hud)] text-sm font-semibold uppercase tracking-[0.15em] text-white transition-colors hover:bg-black/40 [text-shadow:0_0_18px_rgba(255,255,255,0.35)]">
             <HudBrackets />
             <Icon aria-hidden className="h-4 w-4" style={{ color: accentColor }} />
             <span aria-hidden className="whitespace-pre">

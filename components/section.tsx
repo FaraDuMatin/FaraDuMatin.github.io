@@ -63,12 +63,26 @@ interface SectionProps {
     architecture?: string;
 }
 
+// Static HUD corner brackets for panels and the carousel.
+const cornerPos = [
+    'left-0 top-0 border-l-2 border-t-2', 'right-0 top-0 border-r-2 border-t-2',
+    'right-0 bottom-0 border-r-2 border-b-2', 'left-0 bottom-0 border-l-2 border-b-2',
+];
+function Corners({ color, size }: { color: string; size: string }) {
+    return <>{cornerPos.map(pos => (
+        <span key={pos} aria-hidden style={{ borderColor: color }} className={`pointer-events-none absolute ${size} ${pos}`} />
+    ))}</>;
+}
+
+const hud = 'font-[family-name:var(--font-hud)]';
+
 export default function Section({title, description, feature, stack, github, githubLink, site, siteLink, demo, demoLink, fullDescription, root, slideCount, imageExtensions, accentColor, architecture }: SectionProps) {
     const accent = readableColor(accentColor);
     return (
-        <section id={root} style={{ boxShadow: `0 0 4px ${accentColor}, 0px 0px 4px ${accentColor} inset`}}  className="relative w-full bg-black/50 max-w-6xl animate-in fade-in duration-500 p-6 sm:p-12 py-12 sm:py-20 border-x border-b border-gray-800 flex flex-col">
-            <h2 style={{ borderLeft: `4px  ${accentColor}` }} className="-ml-6 sm:-ml-12 pl-4 sm:pl-10 text-3xl sm:text-5xl font-semibold text-zinc-400">
-                <span style={{ color: accentColor }} className="font-bold">{title}. </span>
+        <section id={root} className="relative mt-10 w-full bg-black/50 max-w-6xl animate-in fade-in duration-500 p-6 sm:p-12 py-12 sm:py-20 border border-white/5 flex flex-col">
+            <Corners color={accent} size="size-8" />
+            <h2 className={`${hud} text-3xl sm:text-5xl font-semibold text-zinc-300 [text-shadow:0_0_18px_rgba(255,255,255,0.2)]`}>
+                <span style={{ color: accent }} className="font-bold">{title}. </span>
                 <span className="block sm:inline">{description}</span>
             </h2>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
@@ -77,10 +91,13 @@ export default function Section({title, description, feature, stack, github, git
                 {(github && githubLink) && <HudLink href={githubLink} label="Github" icon={Github} accentColor={accentColor} />}
                 {architecture && <ArchitectureModal architecturePath={architecture} accentColor={accentColor} />}
             </div>
-            <EmblaCarousel slides={(root && slideCount) ? generateSlidePaths(root, slideCount, imageExtensions) : ["placeholder.png"]} options={{}} />
+            <div className="relative my-12 p-3 [&_.embla]:my-0">
+                <Corners color="rgba(255,255,255,0.5)" size="size-5" />
+                <EmblaCarousel slides={(root && slideCount) ? generateSlidePaths(root, slideCount, imageExtensions) : ["placeholder.png"]} options={{}} />
+            </div>
             <div className="w-full flex flex-col items-center gap-6 text-center">
                 <div>
-                    <h3 style={{ color: accent }} className="mb-3 text-xs font-bold uppercase tracking-[0.2em]">Features</h3>
+                    <h3 style={{ color: accent }} className={`${hud} mb-3 text-sm font-semibold uppercase tracking-[0.2em]`}>Features</h3>
                     <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2">
                         {feature.split(',').map((f, i) => (
                             <li key={i} className="flex items-center gap-2.5 text-sm text-zinc-300">
@@ -92,7 +109,7 @@ export default function Section({title, description, feature, stack, github, git
                 </div>
                 {stack &&
                     <div>
-                        <h3 style={{ color: accent }} className="mb-3 text-xs font-bold uppercase tracking-[0.2em]">Stack</h3>
+                        <h3 style={{ color: accent }} className={`${hud} mb-3 text-sm font-semibold uppercase tracking-[0.2em]`}>Stack</h3>
                         <div className="flex flex-wrap justify-center gap-2">
                             {stack.split(',').map((s, i) => <StackPill key={i} name={s.trim()} />)}
                         </div>

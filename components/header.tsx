@@ -74,7 +74,7 @@ export default function Header({ children, bare = false, onBack }: { children?: 
             rel="noopener noreferrer"
             onMouseEnter={scrambleResume}
             onFocus={scrambleResume}
-            className={`group relative ml-2 px-6 py-2.5 bg-black/25 backdrop-blur-[2px] text-white text-sm font-semibold uppercase tracking-[0.15em] transition-colors hover:bg-black/40 ${glow}`}
+            className={`group relative ml-2 px-6 py-2.5 bg-black/30 text-white text-sm font-semibold uppercase tracking-[0.15em] transition-colors hover:bg-black/40 ${glow}`}
             aria-label="Download CV"
           >
             <HudBrackets />
