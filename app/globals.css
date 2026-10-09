@@ -185,7 +185,24 @@ body {
   transform: translateX(420%) skewX(-20deg);
 }
 
+/* HUD bracket lock-on (Back button) — on hover the brackets fly in from further out and
+   snap onto the button, like a target lock. --gx / --gy set each corner's outward direction. */
+
+@keyframes bracket-lock {
+  from { transform: translate(calc(var(--gx) * 10px), calc(var(--gy) * 10px)); opacity: 0; }
+  to   { transform: translate(0, 0); opacity: 1; }
+}
+
+.group:hover .bracket-lock,
+.group:focus-visible .bracket-lock {
+  animation: bracket-lock 280ms cubic-bezier(0.2, 0.9, 0.3, 1.2) 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .group:hover .bracket-lock,
+  .group:focus-visible .bracket-lock {
+    animation: none;
+  }
   .magnetic-pill::before {
     animation: none;
   }

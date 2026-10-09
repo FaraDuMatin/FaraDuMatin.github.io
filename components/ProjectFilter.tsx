@@ -3,6 +3,7 @@
 import { categories, type Category } from '@/lib/projects';
 import { useLanguage } from '@/lib/LanguageContext';
 import { useScramble } from '@/lib/useScramble';
+import { frames } from '@/components/IslandFrames';
 
 // null = no island picked yet, so no projects shown.
 export type Selection = Category | 'all' | null;
@@ -26,18 +27,18 @@ export default function ProjectFilter({ active, counts, total, onChange }: Proje
     const { t } = useLanguage();
     const options = [
         { value: 'all' as const, label: t.filters.all, count: total,
-          place: "col-span-2 sm:col-span-1 sm:col-start-2 sm:row-start-1 sm:row-span-2 sm:self-center w-full" },
+          place: "col-span-2 sm:col-span-1 sm:col-start-2 sm:row-start-1 sm:row-span-2 sm:self-center size-48 sm:size-64" },
         ...categories.map(c => ({ value: c, label: t.filters.categories[c], count: counts[c],
-          place: `${placement[c]} w-full sm:w-40 sm:justify-self-center` })),
+          place: `${placement[c]} size-36 sm:size-40` })),
     ];
 
     return (
         <nav aria-label={t.filters.label} className="mt-10 sm:mt-14">
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-[1fr_2fr_1fr] sm:grid-rows-2 sm:gap-x-10 sm:gap-y-8">
+            <div className="grid grid-cols-2 justify-items-center gap-4 sm:grid-cols-[1fr_2fr_1fr] sm:grid-rows-2 sm:gap-x-10 sm:gap-y-8">
                 {options.map(({ value, label, count, place }) => {
                     const isActive = active === value;
                     return (
-                        <Island key={value} label={label} count={count} place={place} isActive={isActive}
+                        <Island key={value} label={label} count={count} place={place} frame={frames[value]} isActive={isActive}
                             onClick={() => onChange(isActive ? null : value)} />
                     );
                 })}
@@ -50,22 +51,27 @@ interface IslandProps {
     label: string;
     count: number;
     place: string;
+    frame: (typeof frames)[keyof typeof frames];
     isActive: boolean;
     onClick: () => void;
 }
 
-function Island({ label, count, place, isActive, onClick }: IslandProps) {
+function Island({ label, count, place, frame: { viewBox, Frame }, isActive, onClick }: IslandProps) {
     const [glyphs, scramble] = useScramble(label);
     return (
         <button type="button" aria-pressed={isActive} aria-label={label} onClick={onClick}
             onMouseEnter={scramble} onFocus={scramble}
-            className={`${place} flex h-24 sm:h-40 flex-col items-center justify-center gap-1 border shadow-md transition-colors ${isActive
-                ? 'border-zinc-100 bg-zinc-100 text-black'
-                : 'border-zinc-800 bg-zinc-950 text-zinc-400 hover:border-zinc-600 hover:text-white'}`}>
-            <span aria-hidden className="text-lg sm:text-xl font-medium whitespace-pre">
+            className={`${place} group relative flex flex-col items-center justify-center gap-1 transition-colors ${isActive
+                ? 'text-white'
+                : 'text-zinc-500 hover:text-zinc-200'}`}>
+            <svg viewBox={viewBox} fill="none" stroke="currentColor" aria-hidden
+                className={`absolute inset-0 h-full w-full overflow-visible ${isActive ? 'drop-shadow-[0_0_6px_rgba(255,255,255,0.6)]' : ''}`}>
+                <Frame />
+            </svg>
+            <span aria-hidden className={`relative font-mono uppercase whitespace-pre ${label.length > 6 ? 'text-xs tracking-[0.15em]' : 'text-sm sm:text-base tracking-[0.2em]'} ${isActive ? 'text-white' : 'text-zinc-300 group-hover:text-white'}`}>
                 {glyphs.map((g, i) => <span key={i} style={{ opacity: g.opacity }}>{g.ch}</span>)}
             </span>
-            <span className={`text-xs tabular-nums ${isActive ? 'text-zinc-500' : 'text-zinc-600'}`}>{count}</span>
+            <span className="relative font-mono text-xs tabular-nums text-zinc-500">{count}</span>
         </button>
     );
 }
