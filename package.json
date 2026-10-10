@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@radix-ui/react-tooltip": "^1.1.8",
+    "@types/three": "^0.186.0",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
     "class-variance-authority": "^0.7.1",
@@ -20,7 +21,8 @@
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^3.0.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "three": "^0.186.1"
   },
   "devDependencies": {
     "@types/node": "^20",

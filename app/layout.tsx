@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "Farah Mohamed Portfolio",
     images: [
       {
-        url: '/og/og.png',
+        url: '/og/og.png?v=2',
         width: 1200,
         height: 630,
         alt: 'Farah Mohamed - portfolio preview',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Farah Mohamed - Software Developer Portfolio',
     description: 'A collection of Full-stack, 3D, and AI projects engineered for performance and user experience.',
-    images: ['/og/og.png'],
+    images: ['/og/og.png?v=2'],
   },
   robots: {
     index: true,

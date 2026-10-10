@@ -3,13 +3,16 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Thumb from './EmblaCarouselThumbsButton';
+import ClickVideo, { posterOf } from './ClickVideo';
 
 interface EmblaCarouselProps {
     slides: string[];
+    video?: string; // project video, shown first; plays on click
     options: any;
 }
 
-const EmblaCarousel = ({ slides, options }: EmblaCarouselProps) => {
+const EmblaCarousel = ({ slides: images, video, options }: EmblaCarouselProps) => {
+    const slides = video ? [video, ...images] : images;
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [emblaMainRef, emblaMainApi] = useEmblaCarousel(options);
     const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({
@@ -29,6 +32,8 @@ const EmblaCarousel = ({ slides, options }: EmblaCarouselProps) => {
     const onSelect = useCallback(() => {
         if (!emblaMainApi || !emblaThumbsApi) return;
         setSelectedIndex(emblaMainApi.selectedScrollSnap());
+        // Leaving the video slide pauses it.
+        emblaNodeRef.current?.querySelectorAll('video[data-click]').forEach(v => (v as HTMLVideoElement).pause());
         emblaThumbsApi.scrollTo(emblaMainApi.selectedScrollSnap());
     }, [emblaMainApi, emblaThumbsApi, setSelectedIndex]);
 
@@ -68,7 +73,12 @@ const EmblaCarousel = ({ slides, options }: EmblaCarouselProps) => {
                 <div className="embla__container">
                     {slides.map((image: string, index: number) => (
                         <div className="embla__slide" key={index}>
-                            <img src={image} className="w-full max-h-[70vh] object-contain" />
+                            {video && index === 0
+                                ? <ClickVideo src={video} />
+                                : image.endsWith('.mp4')
+                                // Former GIFs, as muted looping video (much lighter).
+                                ? <video src={image} autoPlay muted loop playsInline preload="metadata" className="w-full max-h-[70vh] object-contain" />
+                                : <img src={image} loading="lazy" decoding="async" className="w-full max-h-[70vh] object-contain" />}
                         </div>
                     ))}
                 </div>
@@ -82,7 +92,8 @@ const EmblaCarousel = ({ slides, options }: EmblaCarouselProps) => {
                                     key={index}
                                     onClick={() => onThumbClick(index)}
                                     selected={index === selectedIndex}
-                                    image={image}
+                                    image={video && index === 0 ? posterOf(video) : image}
+                                    play={!!video && index === 0}
                                 />
                             ))}
                         </div>

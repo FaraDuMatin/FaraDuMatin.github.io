@@ -69,16 +69,16 @@ function Island({ value, label, count, place, frame: { viewBox, Frame, clip }, b
     return (
         <button type="button" aria-pressed={isActive} aria-label={label} onClick={onClick} data-sound="hover" data-island={value}
             onMouseEnter={scramble} onFocus={scramble}
-            className={`${place} group relative flex flex-col items-center justify-center gap-1 font-[family-name:var(--font-hud)] transition-colors ${isActive
+            className={`${place} group relative flex flex-col items-center justify-center gap-1 font-[family-name:var(--font-hud)] transition-colors focus-visible:text-white focus-visible:outline-none ${isActive
                 ? 'text-white'
                 : 'text-zinc-300 hover:text-white'}`}>
             {/* Frosted panel so the label reads over the shader. */}
             <span aria-hidden style={{ clipPath: clip }}
-                className="absolute inset-0 bg-black/30 transition-colors group-hover:bg-black/40" />
+                className="absolute inset-0 bg-black/30 transition-colors group-hover:bg-black/40 group-focus-visible:bg-black/40" />
             <svg viewBox={viewBox} fill="none" stroke="currentColor" aria-hidden
                 className={`absolute inset-0 h-full w-full overflow-visible transition-[filter] ${isActive
                     ? 'drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]'
-                    : 'drop-shadow-[0_0_6px_rgba(255,255,255,0.35)] group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.6)]'}`}>
+                    : 'drop-shadow-[0_0_6px_rgba(255,255,255,0.35)] group-hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.6)] group-focus-visible:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]'}`}>
                 <Frame />
             </svg>
             <span aria-hidden className={`relative font-semibold uppercase whitespace-pre ${size} ${glow} text-white`}>

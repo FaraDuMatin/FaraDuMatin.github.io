@@ -63,6 +63,7 @@ interface SectionProps {
     root?: string;
     slideCount?: number;
     imageExtensions?: string[];
+    video?: string;
     accentColor: string;
     architecture?: string;
 }
@@ -85,7 +86,7 @@ const hud = 'font-[family-name:var(--font-hud)]';
 const ARRIVE = { carousel: 200, title: 500, links: 650, details: 800, text: 950 };
 const arrive = (ms: number) => ({ className: 'dive-part', style: { '--dive-delay': `${ms}ms` } as CSSProperties });
 
-export default function Section({title, description, feature, stack, github, githubLink, site, siteLink, demo, demoLink, fullDescription, root, slideCount, imageExtensions, accentColor, architecture }: SectionProps) {
+export default function Section({title, description, feature, stack, github, githubLink, site, siteLink, demo, demoLink, fullDescription, root, slideCount, imageExtensions, video, accentColor, architecture }: SectionProps) {
     const accent = readableColor(accentColor);
     const [titleGlyphs, scrambleTitle] = useScramble(title);
     useEffect(() => {
@@ -93,7 +94,7 @@ export default function Section({title, description, feature, stack, github, git
         return () => clearTimeout(timer);
     }, []); // eslint-disable-line react-hooks/exhaustive-deps -- once, on arrival
     return (
-        <section id={root} className="relative mt-10 w-full bg-black/50 max-w-6xl animate-in fade-in duration-500 p-6 sm:p-12 py-12 sm:py-20 border border-white/5 flex flex-col">
+        <section id={root} className="relative mt-10 w-full bg-black/65 max-w-6xl animate-in fade-in duration-500 p-6 sm:p-12 py-12 sm:py-20 border border-white/5 flex flex-col">
             <Corners color={accent} size="size-8" />
             <h2 {...arrive(ARRIVE.title)} aria-label={`${title}. ${description}`}>
                 <span aria-hidden className={`${hud} text-3xl sm:text-5xl font-semibold text-zinc-300 [text-shadow:0_0_18px_rgba(255,255,255,0.2)]`}>
@@ -114,7 +115,7 @@ export default function Section({title, description, feature, stack, github, git
             <div {...arrive(ARRIVE.carousel)}>
             <div className="relative my-12 p-3 [&_.embla]:my-0">
                 <Corners color="rgba(255,255,255,0.5)" size="size-5" />
-                <EmblaCarousel slides={(root && slideCount) ? generateSlidePaths(root, slideCount, imageExtensions) : ["placeholder.png"]} options={{}} />
+                <EmblaCarousel slides={(root && slideCount) ? generateSlidePaths(root, slideCount, imageExtensions) : ["placeholder.png"]} video={video} options={{}} />
             </div>
             </div>
             <div {...arrive(ARRIVE.details)}>

@@ -64,7 +64,8 @@
     box-sizing: border-box;
 }
 
-.embla-thumbs__slide img {
+.embla-thumbs__slide img,
+.embla-thumbs__slide video {
     max-width: 100%;
     max-height: 100%;
     display: block;

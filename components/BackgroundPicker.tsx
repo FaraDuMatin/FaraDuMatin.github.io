@@ -18,7 +18,7 @@ export const BACKGROUND_COLORS = [
     { hex: '#6366f1', swatch: '#6366f1', en: 'Indigo', fr: 'Indigo' },
     { hex: '#06b6d4', swatch: '#06b6d4', en: 'Cyan', fr: 'Cyan' },
     { hex: '#22c55e', swatch: '#22c55e', en: 'Green', fr: 'Vert' },
-    { hex: '#84cc16', swatch: '#84cc16', en: 'Lime', fr: 'Citron vert' },
+    { hex: '#ff0000', swatch: '#ff0000', en: 'Red', fr: 'Rouge' },
     { hex: '#f97316', swatch: '#f97316', en: 'Orange', fr: 'Orange' },
     { hex: '#d946ef', swatch: '#d946ef', en: 'Fuchsia', fr: 'Fuchsia' },
 ];
